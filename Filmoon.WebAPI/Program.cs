@@ -6,6 +6,8 @@ webApplicationBuilder.Services.AddAuthentication();
 
 webApplicationBuilder.Services.AddAuthorization();
 
+webApplicationBuilder.Services.AddDbContext<FilmoonContext>();
+
 webApplicationBuilder.Services.AddControllers();
 
 var webApplication = webApplicationBuilder.Build();
