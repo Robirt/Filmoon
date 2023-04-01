@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmoon", "Filmoon\Filmoon.csproj", "{EF55279E-5935-4B7C-8013-21D27CE4C1CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmoon.WebAPI", "Filmoon.WebAPI\Filmoon.WebAPI.csproj", "{A595B466-7494-4BD0-A027-F742E7F1DFDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +17,15 @@ Global
 		{EF55279E-5935-4B7C-8013-21D27CE4C1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF55279E-5935-4B7C-8013-21D27CE4C1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF55279E-5935-4B7C-8013-21D27CE4C1CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A595B466-7494-4BD0-A027-F742E7F1DFDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A595B466-7494-4BD0-A027-F742E7F1DFDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A595B466-7494-4BD0-A027-F742E7F1DFDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A595B466-7494-4BD0-A027-F742E7F1DFDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C584B57C-33E1-4BA8-A749-505C84529D6A}
 	EndGlobalSection
 EndGlobal
