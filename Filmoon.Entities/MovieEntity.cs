@@ -8,7 +8,7 @@ public class MovieEntity
 
     public string Description { get; set; } = string.Empty;
 
-    public DateOnly ReleaseDate { get; set; }
+    public int ReleaseYear { get; set; }
 
     public byte[]? Poster { get; set; }
 
