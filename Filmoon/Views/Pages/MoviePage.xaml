@@ -1,0 +1,101 @@
+﻿<Page x:Class="Filmoon.Views.Pages.MoviePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Filmoon.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MoviePage"
+      Background="White">
+    <Page.Resources>
+        <ResourceDictionary Source="../../ResourceDictionaries/Pages/MoviePageDictionary.xaml"/>
+    </Page.Resources>
+    <ScrollViewer>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400*" />
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="100*"/>
+                <RowDefinition Height="400*"/>
+            </Grid.RowDefinitions>
+
+        <StackPanel Height="300" Width="350" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">
+                <Label Style="{StaticResource ResourceKey=Header}" Content="{Binding Path=title}">
+                    <Label.Effect>
+                        <DropShadowEffect Color="#787976" Direction="90" ShadowDepth="5" Opacity="0.6"/>
+                    </Label.Effect>
+                </Label>
+                <Border Height="200" Width="200">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding cover}" />
+                    </StackPanel>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Height="300" Width="400" Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Label>Tytuł:</Label>
+                <Label  Content="{Binding Path=title}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Reżyseria:</Label>
+                <Label  Content="{Binding Path=director}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Gatunek:</Label>
+                <Label  Content="{Binding Path=type}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Premiera:</Label>
+                <Label  Content="{Binding Path=date}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Opis:</Label>
+                <Label  Content="{Binding Path=description}"></Label>
+            </StackPanel>
+        </StackPanel>
+        
+        <StackPanel Height="100" Width="750" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <Border Height="80" Width="80">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding cover}" />
+                    </StackPanel>
+                </Border>
+                <Border Height="80" Width="80">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding cover}" />
+                    </StackPanel>
+                </Border>
+                <Border Height="80" Width="80">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding cover}" />
+                    </StackPanel>
+                </Border>
+                <Border Height="80" Width="80">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding cover}" />
+                    </StackPanel>
+                </Border>
+                <Border Height="80" Width="80">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding cover}" />
+                    </StackPanel>
+                </Border>
+                <Border Height="80" Width="80">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding cover}" />
+                    </StackPanel>
+                </Border>
+            <Border Height="80" Width="80">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding cover}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        
+    </Grid>
+    </ScrollViewer>
+</Page>

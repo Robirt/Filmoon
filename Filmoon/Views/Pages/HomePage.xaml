@@ -1,0 +1,93 @@
+﻿<Page
+    x:Class="Filmoon.Views.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="White"
+    Title="Home">
+    <Page.Resources>
+        <ResourceDictionary Source="../../ResourceDictionaries/Pages/HomePageDictionary.xaml"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Style="{StaticResource ResourceKey=Header}">
+                    <Label.Effect>
+                        <DropShadowEffect Color="#787976" Direction="90" ShadowDepth="5" Opacity="0.6"/>
+                    </Label.Effect>
+                    FILMOON
+                </Label>
+            </StackPanel>
+            <StackPanel>
+                <TextBox Style="{StaticResource ResourceKey=note2}">
+                    Tu znajdziesz najbezpieczniejszą rozrywkę od największych wytórni na świecie w jednym miejscu.</TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2" >
+            <Border Height="190" Width="210">
+                <StackPanel Orientation="Vertical">
+                    <Button Background="Transparent">
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical" Height="177">
+                                <Image Source="{Binding cover}" />
+                                <Label VerticalAlignment="Bottom">10 rzeczy, których nie wiecie o facetach </Label>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Border Height="190" Width="210">
+                <StackPanel Orientation="Vertical">
+                    <Button Background="Transparent">
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical" Height="177">
+                                <Image Source="{Binding cover}" />
+                                <Label VerticalAlignment="Bottom">10 rzeczy, których nie wiecie o facetach</Label>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Border Height="190" Width="210">
+                <StackPanel Orientation="Vertical">
+                    <Button Background="Transparent"> 
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical" Height="177">
+                                <Image Source="{Binding cover}" />
+                                <Label >10 rzeczy, których nie wiecie o facetach</Label>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <Border Height="46" Width="210">
+                <Button  Style="{StaticResource ResourceKey=buttons}">
+                    Katalog
+                </Button>
+            </Border>
+            <Border Height="46" Width="210">
+                <Button  Style="{StaticResource ResourceKey=buttons}">
+                    Rezerwacje
+                </Button>
+            </Border>
+            <Border Height="46" Width="210">
+                <Button  Style="{StaticResource ResourceKey=buttons}">
+                    Kontakt
+                </Button>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

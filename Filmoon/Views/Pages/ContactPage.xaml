@@ -1,0 +1,47 @@
+﻿<Page x:Class="Filmoon.Views.Pages.ContactPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Filmoon.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="White"
+      Title="ContactPage">
+    <Page.Resources>
+        <ResourceDictionary Source="../../ResourceDictionaries/Pages/ContactPageDictionary.xaml"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="317*"/>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Height="300" Width="400" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+            <StackPanel>
+                <Label Style="{StaticResource ResourceKey=Header}">
+                    <Label.Effect>
+                        <DropShadowEffect Color="#787976" Direction="90" ShadowDepth="4" Opacity="0.5"/>
+                    </Label.Effect>
+                    Kontakt
+                </Label>
+            </StackPanel>
+            <StackPanel>
+                <TextBox>
+                    Masz jakieś pytania? 
+                    Nie wahaj się. Zadzwoń lub wyślij maila. Jesteśmy dostępni dla Was  
+                    Pn-Pt 10-18 oraz Soboty 10-15.
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>Numer telefonu: 777-234-111</Label>
+                <Label>Adres: Leszczyńska 44/46 44-100 Warszawa</Label>
+                <Label>Email: filmoon@gmail.com</Label>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Height="300" Width="400">
+            <WebBrowser x:Name="MapBrowser" Source="https://www.google.pl/maps/place/Leszczy%C5%84ska,+Warszawa/@52.2407778,21.0249749,18z/data=!4m15!1m8!3m7!1s0x471ecc5eacb01d5f:0xf1057a1af9f00b77!2sLeszczy%C5%84ska,+Warszawa!3b1!8m2!3d52.2407105!4d21.0258064!16s%2Fg%2F1tgz9319!3m5!1s0x471ecc5eacb01d5f:0xf1057a1af9f00b77!8m2!3d52.2407105!4d21.0258064!16s%2Fg%2F1tgz9319" Height="300" />
+
+        </StackPanel>
+    </Grid>
+</Page>
