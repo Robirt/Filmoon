@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Filmoon.Entities\Filmoon.Entities.csproj" />
+    <ProjectReference Include="..\Filmoon.Requests\Filmoon.Requests.csproj" />
+    <ProjectReference Include="..\Filmoon.Responses\Filmoon.Responses.csproj" />
   </ItemGroup>
 
 </Project>

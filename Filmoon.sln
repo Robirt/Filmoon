@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmoon", "Filmoon\Filmoon.csproj", "{EF55279E-5935-4B7C-8013-21D27CE4C1CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filmoon", "Filmoon\Filmoon.csproj", "{EF55279E-5935-4B7C-8013-21D27CE4C1CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmoon.WebAPI", "Filmoon.WebAPI\Filmoon.WebAPI.csproj", "{A595B466-7494-4BD0-A027-F742E7F1DFDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filmoon.WebAPI", "Filmoon.WebAPI\Filmoon.WebAPI.csproj", "{A595B466-7494-4BD0-A027-F742E7F1DFDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmoon.Entities", "Filmoon.Entities\Filmoon.Entities.csproj", "{EF35057A-E6A0-455D-8ACB-368DB92E2267}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filmoon.Entities", "Filmoon.Entities\Filmoon.Entities.csproj", "{EF35057A-E6A0-455D-8ACB-368DB92E2267}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmoon.Responses", "Filmoon.Responses\Filmoon.Responses.csproj", "{81C7BC0D-D1E3-4235-B961-C0FD444733B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmoon.Requests", "Filmoon.Requests\Filmoon.Requests.csproj", "{D7956D04-935C-47FE-8D91-DC26091E3E8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{EF35057A-E6A0-455D-8ACB-368DB92E2267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF35057A-E6A0-455D-8ACB-368DB92E2267}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF35057A-E6A0-455D-8ACB-368DB92E2267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81C7BC0D-D1E3-4235-B961-C0FD444733B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C7BC0D-D1E3-4235-B961-C0FD444733B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C7BC0D-D1E3-4235-B961-C0FD444733B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C7BC0D-D1E3-4235-B961-C0FD444733B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7956D04-935C-47FE-8D91-DC26091E3E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7956D04-935C-47FE-8D91-DC26091E3E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7956D04-935C-47FE-8D91-DC26091E3E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7956D04-935C-47FE-8D91-DC26091E3E8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
