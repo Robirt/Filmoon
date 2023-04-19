@@ -12,9 +12,9 @@ public class RentalsService
 
     private RentalsRepository RentalsRepository { get; }
 
-    public async Task<List<RentalEntity>> GetAsync()
+    public async Task<List<RentalEntity>> GetByCustomerIdAsync(int customerId)
     {
-        return await RentalsRepository.GetAsync();
+        return await RentalsRepository.GetAsync(r => r.CustomerId == customerId);
     }
 
     public async Task<RentalEntity?> GetByIdAsync(int id)

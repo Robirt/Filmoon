@@ -31,6 +31,7 @@ public class MoviesController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> AddAsync([FromBody] MovieEntity movie)
     {
         try
@@ -46,6 +47,7 @@ public class MoviesController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> UpdateAsync([FromBody] MovieEntity movie)
     {
         try
@@ -61,6 +63,7 @@ public class MoviesController : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> RemoveAsync([FromRoute] int id)
     {
         try

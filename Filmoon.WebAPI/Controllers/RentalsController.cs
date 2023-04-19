@@ -3,6 +3,7 @@ using Filmoon.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Filmoon.WebAPI.Controllers;
 
@@ -19,9 +20,10 @@ public class RentalsController : ControllerBase
     private RentalsService RentalsService { get; }
 
     [HttpGet]
+    [Authorize(Roles = "Customer")]
     public async Task<ActionResult<List<RentalEntity>>> GetAsync()
     {
-        return Ok(await RentalsService.GetAsync());
+        return Ok(await RentalsService.GetByCustomerIdAsync(Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier))));
     }
 
     [HttpGet("{id:int}")]
@@ -31,6 +33,7 @@ public class RentalsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Customer")]
     public async Task<ActionResult> AddAsync([FromBody] RentalEntity rental)
     {
         try
