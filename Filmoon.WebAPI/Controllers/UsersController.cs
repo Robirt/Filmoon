@@ -23,10 +23,4 @@ public class UsersController : ControllerBase
     {
 
     }
-
-    [HttpPost("SignUp")]
-    public async Task<ActionResult<UserSignUpResponse>> SignUpAsync([FromBody] UserSignUpRequest signUpRequest)
-    {
-
-    }
 }
