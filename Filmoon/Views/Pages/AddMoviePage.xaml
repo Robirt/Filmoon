@@ -75,8 +75,8 @@
             <Label Content="Director:"/>
             <TextBox/>
         </StackPanel>
-        
-        <Button Grid.Row="9" Style="{StaticResource ResourceKey=Main}">
+
+        <Button Grid.Row="9" Style="{StaticResource ResourceKey=Main}" Command="{Binding AddMovieCommand}" CommandParameter="{Binding Movie}">
             <Button.Effect>
                 <DropShadowEffect Color="#787976" ShadowDepth="5" Opacity="0.5" BlurRadius="7"/>
             </Button.Effect>

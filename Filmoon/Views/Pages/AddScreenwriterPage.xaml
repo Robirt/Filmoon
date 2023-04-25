@@ -36,7 +36,7 @@
             <DatePicker />
         </StackPanel>
 
-        <Button Grid.Row="4" Style="{StaticResource ResourceKey=Main}">
+        <Button Grid.Row="4" Style="{StaticResource ResourceKey=Main}" Command="{Binding AddScreenwriterCommand}" CommandParameter="{Binding Screenwriter}">
             <Button.Effect>
                 <DropShadowEffect Color="#787976" ShadowDepth="5" Opacity="0.5" BlurRadius="7"/>
             </Button.Effect>
