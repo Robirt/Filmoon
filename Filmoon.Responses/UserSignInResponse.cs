@@ -8,7 +8,6 @@ namespace Filmoon.Responses
 {
     public class UserSignInResponse
     {
-        {
         public UserSignInResponse()
         {
 
@@ -32,5 +31,4 @@ namespace Filmoon.Responses
 
         public string Token { get; set; }
     }
-}
 }
