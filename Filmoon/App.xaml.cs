@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Filmoon.Views;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
 
@@ -22,6 +23,8 @@ public partial class App : Application
         base.OnStartup(e);
 
         await AppHost.StartAsync();
+
+        AppHost.Services.GetRequiredService<MainWindow>().Show();
     }
 
     protected override async void OnExit(ExitEventArgs e)

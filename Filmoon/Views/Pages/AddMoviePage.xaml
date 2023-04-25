@@ -45,7 +45,7 @@
 
         <StackPanel  Grid.Row="4" Orientation="Horizontal">
             <Label  Content="Plakat"/>
-            <Button Content="Wybierz obraz" Click="SelectImage_Click" Width="177" Height="35" />
+            <Button Content="Wybierz obraz" Width="177" Height="35" />
         </StackPanel>
 
         <StackPanel  Grid.Row="5" Orientation="Horizontal">
