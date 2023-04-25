@@ -29,7 +29,7 @@
             <PasswordBox/>
         </StackPanel>
 
-        <Button Grid.Row="8" Style="{StaticResource ResourceKey=Main}">
+        <Button Grid.Row="8" Style="{StaticResource ResourceKey=Main}" Command="{Binding SignUpCommand}" CommandParameter="{Binding SignUpRequest}">
             <Button.Effect>
                 <DropShadowEffect Color="#787976" ShadowDepth="5" Opacity="0.5" BlurRadius="7"/>
             </Button.Effect>
