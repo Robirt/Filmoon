@@ -1,6 +1,5 @@
 ﻿using Filmoon.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System.Linq.Expressions;
 
 namespace Filmoon.WebAPI.Repositories;
@@ -36,6 +35,7 @@ public class ScreenwritersRepository
             await FilmoonContext.Screenwriters.AddAsync(screenwriter);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;
@@ -49,6 +49,7 @@ public class ScreenwritersRepository
             FilmoonContext.Screenwriters.Update(screenwriter);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;
@@ -62,6 +63,7 @@ public class ScreenwritersRepository
             FilmoonContext.Screenwriters.Remove(screenwriter);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;

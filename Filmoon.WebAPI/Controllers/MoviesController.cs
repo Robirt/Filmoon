@@ -34,47 +34,26 @@ public class MoviesController : ControllerBase
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> AddAsync([FromBody] MovieEntity movie)
     {
-        try
-        {
-            await MoviesService.AddAsync(movie);
-            return NoContent();
-        }
+        var actionResponse = await MoviesService.AddAsync(movie);
 
-        catch
-        {
-            return BadRequest();
-        }
+        return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);
     }
 
     [HttpPut]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> UpdateAsync([FromBody] MovieEntity movie)
     {
-        try
-        {
-            await MoviesService.UpdateAsync(movie);
-            return NoContent();
-        }
+        var actionResponse = await MoviesService.UpdateAsync(movie);
 
-        catch
-        {
-            return BadRequest();
-        }
+        return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);
     }
 
     [HttpDelete("{id:int}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> RemoveAsync([FromRoute] int id)
     {
-        try
-        {
-            await MoviesService.RemoveAsync(id);
-            return NoContent();
-        }
+        var actionResponse = await MoviesService.RemoveAsync(id);
 
-        catch
-        {
-            return BadRequest();
-        }
+        return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);
     }
 }

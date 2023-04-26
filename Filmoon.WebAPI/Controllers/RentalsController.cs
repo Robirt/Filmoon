@@ -36,45 +36,24 @@ public class RentalsController : ControllerBase
     [Authorize(Roles = "Customer")]
     public async Task<ActionResult> AddAsync([FromBody] RentalEntity rental)
     {
-        try
-        {
-            await RentalsService.AddAsync(rental);
-            return NoContent();
-        }
+        var actionResponse = await RentalsService.AddAsync(rental);
 
-        catch
-        {
-            return BadRequest();
-        }
+        return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);
     }
 
     [HttpPut]
     public async Task<ActionResult> UpdateAsync([FromBody] RentalEntity rental)
     {
-        try
-        {
-            await RentalsService.UpdateAsync(rental);
-            return NoContent();
-        }
+        var actionResponse = await RentalsService.UpdateAsync(rental);
 
-        catch
-        {
-            return BadRequest();
-        }
+        return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);
     }
 
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> RemoveAsync([FromRoute] int id)
     {
-        try
-        {
-            await RentalsService.RemoveAsync(id);
-            return NoContent();
-        }
+        var actionResponse = await RentalsService.RemoveAsync(id);
 
-        catch
-        {
-            return BadRequest();
-        }
+        return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);
     }
 }

@@ -29,12 +29,12 @@ public class DirectorsService
         {
             await DirectorsRepository.AddAsync(director);
 
-            return new ActionResponse(true, "Director was added successfully.");
+            return new ActionResponse(true, "Director was added successful.");
         }
 
         catch (Exception exception)
         {
-            return new ActionResponse(false, $"Director was not added. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
+            return new ActionResponse(false, $"Director was not added successful. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
         }
     }
 
@@ -44,27 +44,31 @@ public class DirectorsService
         {
             await DirectorsRepository.UpdateAsync(director);
 
-            return new ActionResponse(true, "Director was updated successfully.");
+            return new ActionResponse(true, "Director was updated successful.");
         }
 
         catch (Exception exception)
         {
-            return new ActionResponse(false, $"Director was not updated. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
+            return new ActionResponse(false, $"Director was not updated successful. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
         }
     }
 
-    public async Task<ActionResponse> RemoveAsync(DirectorEntity director)
+    public async Task<ActionResponse> RemoveAsync(int id)
     {
+        var director = await DirectorsRepository.GetByIdAsync(id);
+
+        if (director == null) return new ActionResponse(false, $"Director with Id {id} was not found.");
+
         try
         {
             await DirectorsRepository.RemoveAsync(director);
 
-            return new ActionResponse(true, "Director was removed successfully.");
+            return new ActionResponse(true, "Director was removed successful.");
         }
 
         catch (Exception exception)
         {
-            return new ActionResponse(false, $"Director was not removed. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
+            return new ActionResponse(false, $"Director was not removed successful. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
         }
     }
 }

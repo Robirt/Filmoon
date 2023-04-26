@@ -1,4 +1,5 @@
 ﻿using Filmoon.Entities;
+using Filmoon.Responses;
 using Filmoon.WebAPI.Repositories;
 
 namespace Filmoon.WebAPI.Services;
@@ -27,24 +28,54 @@ public class MoviesService
         return (await MoviesRepository.GetAsync(x => x.Title == title)).FirstOrDefault();
     }
 
-    public async Task AddAsync(MovieEntity movie)
+    public async Task<ActionResponse> AddAsync(MovieEntity movie)
     {
-        await MoviesRepository.AddAsync(movie);
+        try
+        {
+            await MoviesRepository.AddAsync(movie);
+
+            return new ActionResponse(true, "Movie was added successful.");
+        }
+
+        catch (Exception exception)
+        {
+            return new ActionResponse(false, $"Movie was not added successful. Exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
+        }
     }
 
-    public async Task UpdateAsync(MovieEntity movie)
+    public async Task<ActionResponse> UpdateAsync(MovieEntity movie)
     {
-        if (await MoviesRepository.GetByIdAsync(movie.Id) is null) throw new ArgumentException($"Movie with Id {movie.Id} not found", nameof(movie.Id));
+        if (await MoviesRepository.GetByIdAsync(movie.Id) is null) return new ActionResponse(false, $"Movie with Id {movie.Id} was not found.");
 
-        await MoviesRepository.UpdateAsync(movie);
+        try
+        {
+            await MoviesRepository.UpdateAsync(movie);
+
+            return new ActionResponse(true, "Movie was updated successful.");
+        }
+
+        catch (Exception exception)
+        {
+            return new ActionResponse(false, $"Movie was not updated successful. Exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
+        }
     }
 
-    public async Task RemoveAsync(int id)
+    public async Task<ActionResponse> RemoveAsync(int id)
     {
         var movie = await MoviesRepository.GetByIdAsync(id);
 
-        if (movie == null) throw new ArgumentException($"Movie with Id {id} not found", nameof(id));
+        if (movie == null) return new ActionResponse(false, $"Movie with Id {id} was not found.");
 
-        await MoviesRepository.RemoveAsync(movie);
+        try
+        {
+            await MoviesRepository.RemoveAsync(movie);
+
+            return new ActionResponse(true, "Movie was removed successful.");
+        }
+
+        catch (Exception exception)
+        {
+            return new ActionResponse(true, $"Movie was not removed successful. Exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
+        }
     }
 }

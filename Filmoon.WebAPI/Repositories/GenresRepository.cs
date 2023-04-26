@@ -35,6 +35,7 @@ public class GenresRepository
             await FilmoonContext.Genres.AddAsync(genre);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;
@@ -48,6 +49,7 @@ public class GenresRepository
             FilmoonContext.Genres.Update(genre);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;
@@ -61,6 +63,7 @@ public class GenresRepository
             FilmoonContext.Genres.Remove(genre);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;

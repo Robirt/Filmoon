@@ -35,6 +35,7 @@ public class MoviesRepository
             await FilmoonContext.Movies.AddAsync(movie);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;
@@ -48,6 +49,7 @@ public class MoviesRepository
             FilmoonContext.Movies.Update(movie);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;
@@ -61,6 +63,7 @@ public class MoviesRepository
             FilmoonContext.Movies.Remove(movie);
             await FilmoonContext.SaveChangesAsync();
         }
+
         catch (DbUpdateException)
         {
             throw;

@@ -1,4 +1,5 @@
 ﻿using Filmoon.Entities;
+using Filmoon.Responses;
 using Filmoon.WebAPI.Repositories;
 
 namespace Filmoon.WebAPI.Services;
@@ -22,24 +23,54 @@ public class RentalsService
         return await RentalsRepository.GetByIdAsync(id);
     }
 
-    public async Task AddAsync(RentalEntity rental)
+    public async Task<ActionResponse> AddAsync(RentalEntity rental)
     {
-        await RentalsRepository.AddAsync(rental);
+        try
+        {
+            await RentalsRepository.AddAsync(rental);
+
+            return new ActionResponse(true, "Rental was added successful.");
+        }
+
+        catch (Exception exception)
+        {
+            return new ActionResponse(false, $"Rental was not added successful. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
+        }
     }
 
-    public async Task UpdateAsync(RentalEntity rental)
+    public async Task<ActionResponse> UpdateAsync(RentalEntity rental)
     {
-        if (await RentalsRepository.GetByIdAsync(rental.Id) is null) throw new ArgumentException($"Rental with Id {rental.Id} not found", nameof(rental.Id));
+        if (await RentalsRepository.GetByIdAsync(rental.Id) is null) return new ActionResponse(false, $"Rental with Id {rental.Id} was not found.");
 
-        await RentalsRepository.UpdateAsync(rental);
+        try
+        {
+            await RentalsRepository.UpdateAsync(rental);
+
+            return new ActionResponse(true, "Rental was updated successful.");
+        }
+
+        catch (Exception exception)
+        {
+            return new ActionResponse(false, $"Screenwriter was not updated successful. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
+        }
     }
 
-    public async Task RemoveAsync(int id)
+    public async Task<ActionResponse> RemoveAsync(int id)
     {
         var rental = await RentalsRepository.GetByIdAsync(id);
 
-        if (rental == null) throw new ArgumentException($"Rental with Id {id} not found", nameof(id));
+        if (rental == null) return new ActionResponse(false, $"Rental with Id {id} was not found.");
 
-        await RentalsRepository.RemoveAsync(rental);
+        try
+        {
+            await RentalsRepository.RemoveAsync(rental);
+
+            return new ActionResponse(true, "Rental was removed successful.");
+        }
+
+        catch (Exception exception)
+        {
+            return new ActionResponse(false, $"Rental was not removed successful. An exception occured: {exception.Message ?? exception.InnerException?.Message ?? "Undefined message"}.");
+        }
     }
 }
