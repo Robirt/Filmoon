@@ -34,12 +34,12 @@ public class GenresService
         {
             await GenresRepository.AddAsync(genre);
 
-            return new ActionResponse(true, "Genre was added successfully.");
+            return new ActionResponse(true, "Genre was added successful.");
         }
 
         catch (Exception exception)
         {
-            return new ActionResponse(false, $"Genre was not added successfully. Exception occurred: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
+            return new ActionResponse(false, $"Genre was not added successful. Exception occurred: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
         }
     }
 
@@ -51,12 +51,12 @@ public class GenresService
         {
             await GenresRepository.UpdateAsync(genre);
 
-            return new ActionResponse(true, "Genre was updated successfully.");
+            return new ActionResponse(true, "Genre was updated successful.");
         }
 
         catch (Exception exception)
         {
-            return new ActionResponse(false, $"Genre was not updated successfully. Exception occurred: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
+            return new ActionResponse(false, $"Genre was not updated successful. Exception occurred: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
         }
     }
 
@@ -70,12 +70,12 @@ public class GenresService
         {
             await GenresRepository.RemoveAsync(genre);
 
-            return new ActionResponse(true, "Genre was removed successfully.");
+            return new ActionResponse(true, "Genre was removed successful.");
         }
 
         catch (Exception exception)
         {
-            return new ActionResponse(true, $"Genre was not removed successfully. Exception occurred: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
+            return new ActionResponse(true, $"Genre was not removed successful. Exception occurred: {exception.Message ?? exception.InnerException?.Message ?? "Undefined exception"}.");
         }
     }
 }

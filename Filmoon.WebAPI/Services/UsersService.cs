@@ -6,6 +6,6 @@ public class UsersService
 {
     public async Task<UserSignInResponse> SignInAsync()
     {
-
+        throw new NotImplementedException();
     }
 }

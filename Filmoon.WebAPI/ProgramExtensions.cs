@@ -21,7 +21,9 @@ public static class ProgramExtensions
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<UsersRepository>();
+        services.AddScoped<AdministratorsRepository>();
+        services.AddScoped<CustomersRepository>();
+
         services.AddScoped<GenresRepository>();
         services.AddScoped<ScreenwritersRepository>();
         services.AddScoped<DirectorsRepository>();
@@ -34,6 +36,12 @@ public static class ProgramExtensions
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddScoped<UsersService>();
+        services.AddScoped<AdministratorsService>();
+        services.AddScoped<CustomersService>();
+
+        services.AddScoped<GenresService>();
+        services.AddScoped<ScreenwritersRepository>();
+        services.AddScoped<DirectorsService>();
         services.AddScoped<MoviesService>();
         services.AddScoped<RentalsService>();
 

@@ -29,16 +29,43 @@ public class AdministratorsRepository
 
     public async Task AddAsync(AdministratorEntity administrator)
     {
+        try
+        {
+            await FilmoonContext.Users.AddAsync(administrator);
+            await FilmoonContext.SaveChangesAsync();
+        }
 
+        catch (DbUpdateException)
+        {
+            throw;
+        }
     }
 
     public async Task UpdateAsync(AdministratorEntity administrator)
     {
+        try
+        {
+            FilmoonContext.Users.Update(administrator);
+            await FilmoonContext.SaveChangesAsync();
+        }
 
+        catch (DbUpdateException)
+        {
+            throw;
+        }
     }
 
     public async Task RemoveAsync(AdministratorEntity administrator)
     {
+        try
+        {
+            FilmoonContext.Users.Remove(administrator);
+            await FilmoonContext.SaveChangesAsync();
+        }
 
+        catch (DbUpdateException)
+        {
+            throw;
+        }
     }
 }

@@ -21,6 +21,6 @@ public class UsersController : ControllerBase
     [HttpPost("SignIn")]
     public async Task<ActionResult<UserSignInResponse>> SignInAsync([FromBody] UserSignInRequest signInRequest)
     {
-
+        throw new NotImplementedException();
     }
 }

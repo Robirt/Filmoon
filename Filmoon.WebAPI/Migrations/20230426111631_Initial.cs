@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -29,24 +30,16 @@ namespace Filmoon.WebAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonEntity",
+                name: "RoleEntity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonEntity", x => x.Id);
+                    table.PrimaryKey("PK_RoleEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,6 +58,32 @@ namespace Filmoon.WebAPI.Migrations
                         name: "FK_Genres_Movies_MovieEntityId",
                         column: x => x.MovieEntityId,
                         principalTable: "Movies",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PersonEntity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoleId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonEntity", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PersonEntity_RoleEntity_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "RoleEntity",
                         principalColumn: "Id");
                 });
 
@@ -122,11 +141,10 @@ namespace Filmoon.WebAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RentalId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: true),
                     MovieId = table.Column<int>(type: "int", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    StartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -137,8 +155,8 @@ namespace Filmoon.WebAPI.Migrations
                         principalTable: "Movies",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Rentals_PersonEntity_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Rentals_PersonEntity_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "PersonEntity",
                         principalColumn: "Id");
                 });
@@ -159,14 +177,19 @@ namespace Filmoon.WebAPI.Migrations
                 column: "ScreenwritersId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PersonEntity_RoleId",
+                table: "PersonEntity",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rentals_CustomerId",
+                table: "Rentals",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rentals_MovieId",
                 table: "Rentals",
                 column: "MovieId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rentals_UserId",
-                table: "Rentals",
-                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -189,6 +212,9 @@ namespace Filmoon.WebAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "PersonEntity");
+
+            migrationBuilder.DropTable(
+                name: "RoleEntity");
         }
     }
 }

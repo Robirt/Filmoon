@@ -1,5 +1,6 @@
 ﻿using Filmoon.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace Filmoon.WebAPI.Repositories;
 
@@ -29,16 +30,43 @@ public class CustomersRepository
 
     public async Task AddAsync(CustomerEntity customer)
     {
+        try
+        {
+            await FilmoonContext.Users.AddAsync(customer);
+            await FilmoonContext.SaveChangesAsync();
+        }
 
+        catch (DbUpdateException)
+        {
+            throw;
+        }
     }
 
     public async Task UpdateAsync(CustomerEntity customer)
     {
+        try
+        {
+            FilmoonContext.Users.Update(customer);
+            await FilmoonContext.SaveChangesAsync();
+        }
 
+        catch (DbUpdateException)
+        {
+            throw;
+        }
     }
 
     public async Task RemoveAsync(CustomerEntity customer)
     {
+        try
+        {
+            FilmoonContext.Users.Remove(customer);
+            await FilmoonContext.SaveChangesAsync();
+        }
 
+        catch (DbUpdateException)
+        {
+            throw;
+        }
     }
 }
