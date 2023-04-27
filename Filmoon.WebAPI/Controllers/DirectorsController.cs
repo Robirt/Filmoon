@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Filmoon.WebAPI.Controllers;
 
 [Route("WebAPI/[controller]")]
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
 [ApiController]
 public class DirectorsController : ControllerBase
 {

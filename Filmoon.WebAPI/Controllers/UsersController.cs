@@ -19,8 +19,10 @@ public class UsersController : ControllerBase
     private UsersService UsersService { get; }
 
     [HttpPost("SignIn")]
-    public async Task<ActionResult<UserSignInResponse>> SignInAsync([FromBody] UserSignInRequest signInRequest)
+    public async Task<ActionResult<SignInResponse>> SignInAsync([FromBody] SignInRequest signInRequest)
     {
-        throw new NotImplementedException();
+        var actionResponse = await UsersService.SignInAsync(signInRequest);
+
+        return actionResponse.Succeeded ? Ok(actionResponse) : Unauthorized(actionResponse);
     }
 }

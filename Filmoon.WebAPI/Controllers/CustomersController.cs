@@ -1,4 +1,5 @@
 ﻿using Filmoon.Requests;
+using Filmoon.Responses;
 using Filmoon.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -18,9 +19,11 @@ public class CustomersController : ControllerBase
 
     private CustomersService CustomersService { get; }
 
-    [HttpPost("/SignUp")]
-    public async Task<ActionResult<UserSignUpRequest>> SignUpAsync()
+    [HttpPost]
+    public async Task<ActionResult<ActionResponse>> SignUpAsync(SignUpRequest userSignUpRequest)
     {
+        var actionResponse = await CustomersService.SignUpAsync(userSignUpRequest);
 
+        return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);
     }
 }

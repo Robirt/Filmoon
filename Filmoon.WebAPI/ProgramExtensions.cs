@@ -11,9 +11,9 @@ public static class ProgramExtensions
 {
     public static void ConfigureJwtBearer(this JwtBearerOptions options)
     {
-        options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""));
+        options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("Y14bFU89F2pQnfdnFHFH"));
         options.TokenValidationParameters.ValidateIssuerSigningKey = true;
-        options.TokenValidationParameters.ValidIssuer = "";
+        options.TokenValidationParameters.ValidIssuer = "Filmoon";
         options.TokenValidationParameters.ValidateIssuer = true;
         options.TokenValidationParameters.ValidateAudience = false;
         options.TokenValidationParameters.ValidateLifetime = true;
@@ -21,6 +21,7 @@ public static class ProgramExtensions
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<UsersRepository>();
         services.AddScoped<AdministratorsRepository>();
         services.AddScoped<CustomersRepository>();
 

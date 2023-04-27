@@ -8,7 +8,7 @@ using System.Security.Claims;
 namespace Filmoon.WebAPI.Controllers;
 
 [Route("WebAPI/[controller]")]
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Customer")]
 [ApiController]
 public class RentalsController : ControllerBase
 {
@@ -20,22 +20,16 @@ public class RentalsController : ControllerBase
     private RentalsService RentalsService { get; }
 
     [HttpGet]
-    [Authorize(Roles = "Customer")]
     public async Task<ActionResult<List<RentalEntity>>> GetAsync()
     {
         return Ok(await RentalsService.GetByCustomerIdAsync(Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier))));
     }
 
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<RentalEntity>> GetByIdAsync([FromRoute] int id)
-    {
-        return Ok(await RentalsService.GetByIdAsync(id));
-    }
-
     [HttpPost]
-    [Authorize(Roles = "Customer")]
     public async Task<ActionResult> AddAsync([FromBody] RentalEntity rental)
     {
+        rental.CustomerId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
         var actionResponse = await RentalsService.AddAsync(rental);
 
         return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);

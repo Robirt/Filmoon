@@ -32,6 +32,6 @@ public class FilmoonContext : DbContext
     {
         base.OnConfiguring(optionsBuilder);
 
-        optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Filmoon;Integrated Security=True;");
+        optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Filmoon"));
     }
 }
