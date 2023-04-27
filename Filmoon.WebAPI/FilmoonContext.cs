@@ -17,6 +17,7 @@ public class FilmoonContext : DbContext
     public virtual DbSet<GenreEntity> Genres { get; set; }
     public virtual DbSet<MovieEntity> Movies { get; set; }
     public virtual DbSet<UserEntity> Users { get; set; }
+    public virtual DbSet<RoleEntity> Roles { get; set; }
     public virtual DbSet<RentalEntity> Rentals { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,6 +32,6 @@ public class FilmoonContext : DbContext
     {
         base.OnConfiguring(optionsBuilder);
 
-        optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Filmoon"));
+        optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Filmoon;Integrated Security=True;");
     }
 }

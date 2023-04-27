@@ -1,6 +1,6 @@
 ﻿namespace Filmoon.Entities;
 
-public class UserEntity : PersonEntity
+public class UserEntity
 {
     public string UserName { get; set; } = string.Empty;
 

@@ -1,4 +1,5 @@
-﻿using Filmoon.WebAPI.Services;
+﻿using Filmoon.Requests;
+using Filmoon.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,4 +17,10 @@ public class CustomersController : ControllerBase
     }
 
     private CustomersService CustomersService { get; }
+
+    [HttpPost("/SignUp")]
+    public async Task<ActionResult<UserSignUpRequest>> SignUpAsync()
+    {
+
+    }
 }
