@@ -16,17 +16,17 @@ namespace Filmoon.Services
     {
         private HttpClient HttpClient { get; }
 
-        public async Task<UserSignInResponse> SignInAsync(UserSignInRequest request)
+        public async Task<SignInResponse> SignInAsync(SignInRequest request)
         {
             var response = await HttpClient.PostAsJsonAsync("/Users/SignIn", request);
 
-            return await response.Content.ReadFromJsonAsync<UserSignInResponse>();
+            return await response.Content.ReadFromJsonAsync<SignInResponse>();
         }
 
-        public async Task<UserSignUpResponse> SignUpAsync(UserSignUpRequest request)
+        public async Task<SignUpResponse> SignUpAsync(SignUpRequest request)
         {
             var response = await HttpClient.PostAsJsonAsync("/Users/SignUp", request);
-            return await response.Content.ReadFromJsonAsync<UserSignUpResponse>();
+            return await response.Content.ReadFromJsonAsync<SignUpResponse>();
         }
 
         public async Task SignOutAsync()

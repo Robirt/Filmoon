@@ -1,18 +1,17 @@
 ﻿namespace Filmoon.Entities;
 
-public class UserEntity : PersonEntity
+public class UserEntity
 {
     public string UserName { get; set; } = string.Empty;
 
-    public string? Password { get; set; }
+    public string Password { get; set; } = string.Empty;
 
-    public string? PasswordHash { get; set; }
+    public string PasswordHash { get; set; } = string.Empty;
 
-    public byte[]? PasswordSalt { get; set; }
+    public byte[] PasswordSalt { get; set; } = new byte[16];
 
     public string Email { get; set; } = string.Empty;
 
-    public string PhoneNumber { get; set; } = string.Empty;
-
-    public virtual List<RentalEntity>? Rentals { get; set; }
+    public int? RoleId { get; set; }
+    public virtual RoleEntity? Role { get; set; }
 }
