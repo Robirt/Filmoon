@@ -22,6 +22,6 @@ public class UsersService
 
         if (PasswordGenerator.GenerateHash(userSignInRequest.Password, user.PasswordSalt) != user.PasswordHash) return new SignInResponse(false, $"Invalid password.");
 
-        return new SignInResponse(true, "User was signed in successful.", JwtBearerGenerator.GenerateJwtBearer(user.UserName, user.Role!.Name));
+        return new SignInResponse(true, "User was signed in successful.", JwtBearerGenerator.GenerateJwtBearer(user.Id, user.UserName, user.Role!.Name));
     }
 }

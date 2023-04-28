@@ -17,6 +17,8 @@ public class FilmoonContext : DbContext
     public virtual DbSet<GenreEntity> Genres { get; set; }
     public virtual DbSet<MovieEntity> Movies { get; set; }
     public virtual DbSet<UserEntity> Users { get; set; }
+    public virtual DbSet<CustomerEntity> Customers { get; set; }
+    public virtual DbSet<AdministratorEntity> Administrators { get; set; }
     public virtual DbSet<RoleEntity> Roles { get; set; }
     public virtual DbSet<RentalEntity> Rentals { get; set; }
 
@@ -24,7 +26,8 @@ public class FilmoonContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<PersonEntity>().Ignore(p => p.FullName);
+        modelBuilder.Entity<ScreenwriterEntity>().Ignore(s => s.FullName);
+        modelBuilder.Entity<DirectorEntity>().Ignore(d => d.FullName);
         modelBuilder.Entity<UserEntity>().Ignore(p => p.Password);
     }
 

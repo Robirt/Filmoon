@@ -19,7 +19,7 @@ public class AdministratorsService
 
     public async Task<ActionResponse> AddAsync(SignUpRequest userSignUpRequest)
     {
-        if (UsersRepository.GetByUserNameAsync(userSignUpRequest.UserName) is not null) return new ActionResponse(false, $"User with name {userSignUpRequest.UserName} already exists.");
+        if (await UsersRepository.GetByUserNameAsync(userSignUpRequest.UserName) is not null) return new ActionResponse(false, $"User with name {userSignUpRequest.UserName} already exists.");
 
         var passwordSalt = PasswordGenerator.GenerateSalt();
         var passwordHash = PasswordGenerator.GenerateHash(userSignUpRequest.Password, passwordSalt);
