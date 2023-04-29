@@ -35,6 +35,6 @@ public class FilmoonContext : DbContext
     {
         base.OnConfiguring(optionsBuilder);
 
-        optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Filmoon"));
+        optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Filmoon")).UseLazyLoadingProxies();
     }
 }

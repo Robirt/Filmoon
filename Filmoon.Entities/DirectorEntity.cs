@@ -12,5 +12,5 @@ public class DirectorEntity
 
     public DateTime BirthDate { get; set; }
 
-    public List<MovieEntity>? Movies { get; set; }
+    public virtual List<MovieEntity>? Movies { get; set; }
 }

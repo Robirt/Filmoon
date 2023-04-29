@@ -24,7 +24,7 @@ public class MoviesController : ControllerBase
         return Ok(await MoviesService.GetAsync());
     }
 
-    [HttpGet("{title:string}")]
+    [HttpGet("{title}")]
     public async Task<ActionResult<MovieEntity>> GetByTitleAsync([FromRoute] string title)
     {
         return Ok(await MoviesService.GetByTitleAsync(title));
