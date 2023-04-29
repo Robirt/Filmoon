@@ -43,7 +43,7 @@ public static class ProgramExtensions
         services.AddScoped<CustomersService>();
 
         services.AddScoped<GenresService>();
-        services.AddScoped<ScreenwritersRepository>();
+        services.AddScoped<ScreenwritersService>();
         services.AddScoped<DirectorsService>();
         services.AddScoped<MoviesService>();
         services.AddScoped<RentalsService>();

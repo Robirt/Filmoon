@@ -20,6 +20,7 @@ public class CustomersController : ControllerBase
     private CustomersService CustomersService { get; }
 
     [HttpPost]
+    [AllowAnonymous]
     public async Task<ActionResult<ActionResponse>> SignUpAsync(SignUpRequest userSignUpRequest)
     {
         var actionResponse = await CustomersService.SignUpAsync(userSignUpRequest);
