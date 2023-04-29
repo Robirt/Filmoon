@@ -14,24 +14,24 @@ public class AdministratorsRepository
 
     public async Task<List<AdministratorEntity>> GetAsync()
     {
-        return await FilmoonContext.Users.OfType<AdministratorEntity>().ToListAsync();
+        return await FilmoonContext.Administrators.ToListAsync();
     }
 
     public async Task<AdministratorEntity?> GetByIdAsync(int id)
     {
-        return await FilmoonContext.Users.OfType<AdministratorEntity>().FirstOrDefaultAsync(a => a.Id == id);
+        return await FilmoonContext.Administrators.FirstOrDefaultAsync(a => a.Id == id);
     }
 
     public async Task<AdministratorEntity?> GetByUserNameAsync(string userName)
     {
-        return await FilmoonContext.Users.OfType<AdministratorEntity>().FirstOrDefaultAsync(a => a.UserName == userName);
+        return await FilmoonContext.Administrators.FirstOrDefaultAsync(a => a.UserName == userName);
     }
 
     public async Task AddAsync(AdministratorEntity administrator)
     {
         try
         {
-            await FilmoonContext.Users.AddAsync(administrator);
+            await FilmoonContext.Administrators.AddAsync(administrator);
             await FilmoonContext.SaveChangesAsync();
         }
 
@@ -45,7 +45,7 @@ public class AdministratorsRepository
     {
         try
         {
-            FilmoonContext.Users.Update(administrator);
+            FilmoonContext.Administrators.Update(administrator);
             await FilmoonContext.SaveChangesAsync();
         }
 
@@ -59,7 +59,7 @@ public class AdministratorsRepository
     {
         try
         {
-            FilmoonContext.Users.Remove(administrator);
+            FilmoonContext.Administrators.Remove(administrator);
             await FilmoonContext.SaveChangesAsync();
         }
 

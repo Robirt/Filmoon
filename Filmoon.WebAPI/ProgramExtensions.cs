@@ -1,4 +1,6 @@
-﻿using Filmoon.WebAPI.Repositories;
+﻿using Filmoon.Entities;
+using Filmoon.Requests;
+using Filmoon.WebAPI.Repositories;
 using Filmoon.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -51,9 +53,25 @@ public static class ProgramExtensions
 
     public static IApplicationBuilder MigrateDatabase(this IApplicationBuilder app)
     {
-        using var serviceScope = app.ApplicationServices.CreateScope();
+        var serviceScope = app.ApplicationServices.CreateScope();
+
+        var filmoonContext = serviceScope.ServiceProvider.GetRequiredService<FilmoonContext>();
+
+        filmoonContext.Database.Migrate();
+
+        filmoonContext.Roles.AddRange(new RoleEntity() { Name = "Administrator" }, new RoleEntity() { Name = "Customer" });
+        filmoonContext.SaveChanges();
+
+        return app;
+    }
+
+    public static async Task<IApplicationBuilder> AddSuperAdministrator(this IApplicationBuilder app, IConfigurationSection superAdministratorCredentials)
+    {
+        var serviceScope = app.ApplicationServices.CreateScope();
+
+        var administratorsService = serviceScope.ServiceProvider.GetRequiredService<AdministratorsService>();
         
-        serviceScope.ServiceProvider.GetRequiredService<FilmoonContext>().Database.Migrate();
+        await administratorsService.AddAsync(new SignUpRequest(superAdministratorCredentials["UserName"]!, superAdministratorCredentials["Password"]!, superAdministratorCredentials["Email"]!));
 
         return app;
     }

@@ -13,6 +13,8 @@ webApplicationBuilder.Services.AddDbContext<FilmoonContext>();
 
 webApplicationBuilder.Services.AddRepositories();
 
+webApplicationBuilder.Services.AddServices();
+
 webApplicationBuilder.Services.AddControllers();
 
 var webApplication = webApplicationBuilder.Build();
@@ -23,8 +25,10 @@ webApplication.UseAuthentication();
 
 webApplication.UseAuthorization();
 
+webApplication.MapControllers();
+
 webApplication.MigrateDatabase();
 
-webApplication.MapControllers();
+await webApplication.AddSuperAdministrator(webApplication.Configuration.GetSection("SuperAdministratorCredentials"));
 
 webApplication.Run();

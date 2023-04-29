@@ -15,24 +15,24 @@ public class CustomersRepository
 
     public async Task<List<CustomerEntity>> GetAsync()
     {
-        return await FilmoonContext.Users.OfType<CustomerEntity>().ToListAsync();
+        return await FilmoonContext.Customers.ToListAsync();
     }
 
     public async Task<CustomerEntity?> GetByIdAsync(int id)
     {
-        return await FilmoonContext.Users.OfType<CustomerEntity>().FirstOrDefaultAsync(c => c.Id == id);
+        return await FilmoonContext.Customers.FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<CustomerEntity?> GetByUserNameAsync(string userName)
     {
-        return await FilmoonContext.Users.OfType<CustomerEntity>().FirstOrDefaultAsync(c => c.UserName == userName);
+        return await FilmoonContext.Customers.FirstOrDefaultAsync(c => c.UserName == userName);
     }
 
     public async Task AddAsync(CustomerEntity customer)
     {
         try
         {
-            await FilmoonContext.Users.AddAsync(customer);
+            await FilmoonContext.Customers.AddAsync(customer);
             await FilmoonContext.SaveChangesAsync();
         }
 
@@ -46,7 +46,7 @@ public class CustomersRepository
     {
         try
         {
-            FilmoonContext.Users.Update(customer);
+            FilmoonContext.Customers.Update(customer);
             await FilmoonContext.SaveChangesAsync();
         }
 
@@ -60,7 +60,7 @@ public class CustomersRepository
     {
         try
         {
-            FilmoonContext.Users.Remove(customer);
+            FilmoonContext.Customers.Remove(customer);
             await FilmoonContext.SaveChangesAsync();
         }
 
