@@ -16,6 +16,6 @@ public class DirectorsService
 
     public async Task AddDirectorAsync(DirectorEntity director)
     {
-        await HttpClient.PostAsJsonAsync<DirectorEntity>("/Directors", director);
+        await HttpClient.PostAsJsonAsync("/Directors", director);
     }
 }

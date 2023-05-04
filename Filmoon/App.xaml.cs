@@ -12,7 +12,7 @@ public partial class App : Application
     {
         AppHost = Host.CreateDefaultBuilder()
             .ConfigureAppConfiguration((context, builder) => { builder.AddJsonFile("appsettings.json", true, true); })
-            .ConfigureServices((context, services) => { services.AddRepositories().AddServices().AddViewModels().AddViews(); })
+            .ConfigureServices((context, services) => services.AddRouting().AddHttpClient().AddRepositories().AddServices().AddViewModels().AddViews())
             .Build();
     }
 

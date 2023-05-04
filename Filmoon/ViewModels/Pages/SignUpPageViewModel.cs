@@ -11,15 +11,15 @@ namespace Filmoon.ViewModels.Pages
         {
             UsersService = usersService;
 
-            SignUpRequest = new UserSignUpRequest();
+            SignUpRequest = new SignUpRequest();
 
             SignUpCommand = new SignUpCommand(SignUpAsync);
         }
         private UsersService UsersService { get; }
 
-        private UserSignUpRequest signUpRequest;
+        private SignUpRequest signUpRequest;
 
-        public UserSignUpRequest SignUpRequest
+        public SignUpRequest SignUpRequest
         {
             get { return signUpRequest; }
             set { SetProperty(ref signUpRequest, value); }
@@ -29,7 +29,7 @@ namespace Filmoon.ViewModels.Pages
 
         private async void SignUpAsync(object? parameter)
         {
-            await UsersService.SignUpAsync(parameter as UserSignUpRequest);
+            await UsersService.SignUpAsync(parameter as SignUpRequest);
         }
     }
 }

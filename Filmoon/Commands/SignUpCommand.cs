@@ -26,4 +26,3 @@ namespace Filmoon.Commands
         }
     }
 }
-}

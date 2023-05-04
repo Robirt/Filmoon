@@ -25,7 +25,7 @@ public class MoviesService
 
     public async Task<MovieEntity?> GetByTitleAsync(string title)
     {
-        return (await MoviesRepository.GetAsync(x => x.Title == title)).FirstOrDefault();
+        return (await MoviesRepository.GetAsync(m => m.Title == title)).FirstOrDefault();
     }
 
     public async Task<ActionResponse> AddAsync(MovieEntity movie)

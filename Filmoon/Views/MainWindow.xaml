@@ -15,9 +15,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Frame Grid.Row="0" Content="{Binding Content}"/>
-        <StackPanel Grid.Row="1">
-            <Button Content="Home" Command="{Binding GoToAsync}" CommandParameter="Home"/>
+        <Frame Grid.Row="0"/>
+        <StackPanel Orientation="Horizontal">
+            <ItemsControl ItemsSource="{Binding Routes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}" CommandParameter="{Binding Name}" Command="{Binding }"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
     </Grid>
 </Window>

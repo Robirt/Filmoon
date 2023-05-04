@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -23,23 +24,15 @@ namespace Filmoon.Services
             return await response.Content.ReadFromJsonAsync<SignInResponse>();
         }
 
-        public async Task<SignUpResponse> SignUpAsync(SignUpRequest request)
+        public async Task<ActionResponse> SignUpAsync(SignUpRequest request)
         {
             var response = await HttpClient.PostAsJsonAsync("/Users/SignUp", request);
-            return await response.Content.ReadFromJsonAsync<SignUpResponse>();
+            return await response.Content.ReadFromJsonAsync<ActionResponse>();
         }
 
         public async Task SignOutAsync()
         {
-            
-        }
 
-        public async Task<UserSignDownResponse> SignDownAsync(UserSignDownRequest request)
-        {
-
-            var response = await HttpClient.PostAsJsonAsync("/Users/SignDown", request);
-
-            return await response.Content.ReadFromJsonAsync<UserSignDownResponse>();
         }
 
         public async Task<UserEntity> GetUserByUserName()

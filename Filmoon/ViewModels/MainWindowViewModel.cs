@@ -1,24 +1,19 @@
-﻿using Filmoon.Views.Pages;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Windows.Controls;
+﻿using Filmoon.Models;
+using Filmoon.Services;
+using System.Collections.ObjectModel;
 
 namespace Filmoon.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public MainWindowViewModel(IServiceProvider serviceProvider)
+    public MainWindowViewModel(RoutingService routingService)
     {
-        ServiceProvider = serviceProvider;
-        Content = ServiceProvider.GetRequiredService<HomePage>();
+        RoutingService = routingService;
+
+        Routes = new ObservableCollection<RouteModel>(RoutingService.Routes);
     }
 
-    private IServiceProvider ServiceProvider { get; }
+    private RoutingService RoutingService { get; set; }
 
-    private Page content;
-    public Page Content
-    {
-        get { return content; }
-        set { SetProperty(ref content, value); }
-    }
+    public ObservableCollection<RouteModel> Routes { get; set; } = new ObservableCollection<RouteModel>();
 }
