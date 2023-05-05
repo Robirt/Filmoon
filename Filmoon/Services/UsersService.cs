@@ -1,43 +1,58 @@
 ﻿using Filmoon.Entities;
+using Filmoon.Models;
 using Filmoon.Requests;
 using Filmoon.Responses;
 using System;
-using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Filmoon.Services
+namespace Filmoon.Services;
+
+public class UsersService
 {
-    public class UsersService
+    public UsersService(IHttpClientFactory httpClientFactory)
     {
-        private HttpClient HttpClient { get; }
+        HttpClient = httpClientFactory.CreateClient("HttpClient");
+    }
 
-        public async Task<SignInResponse> SignInAsync(SignInRequest request)
-        {
-            var response = await HttpClient.PostAsJsonAsync("/Users/SignIn", request);
+    private HttpClient HttpClient { get; }
 
-            return await response.Content.ReadFromJsonAsync<SignInResponse>();
-        }
+    public JwtBearerModel JwtBearer { get; private set; } = new();
 
-        public async Task<ActionResponse> SignUpAsync(SignUpRequest request)
-        {
-            var response = await HttpClient.PostAsJsonAsync("/Users/SignUp", request);
-            return await response.Content.ReadFromJsonAsync<ActionResponse>();
-        }
+    public event EventHandler<SignInResponse>? SignIn;
 
-        public async Task SignOutAsync()
-        {
+    public event EventHandler<ActionResponse>? SignOut;
 
-        }
+    public void OnSignIn(SignInResponse signInResponse)
+    {
+        SignIn?.Invoke(this, signInResponse);
+    }
 
-        public async Task<UserEntity> GetUserByUserName()
-        {
-            return await HttpClient.GetFromJsonAsync<UserEntity>("/Users");
-        }
+    public async Task<SignInResponse?> SignInAsync(SignInRequest request)
+    {
+        return await (await HttpClient.PostAsJsonAsync("Users/SignIn", request)).Content.ReadFromJsonAsync<SignInResponse>();
+    }
+
+    public async Task<ActionResponse> SignUpAsync(SignUpRequest request)
+    {
+        var response = await HttpClient.PostAsJsonAsync("/Users/SignUp", request);
+        return await response.Content.ReadFromJsonAsync<ActionResponse>();
+    }
+
+    public void SignOutAsync(ActionResponse actionResponse)
+    {
+        SignOut?.Invoke(this, actionResponse);
+    }
+
+    private void ConvertJwtBearerToken(string jwtBearer)
+    {
+        var jwtSecurityToken = new JwtSecurityTokenHandler().ReadToken(jwtBearer) as JwtSecurityToken;
+
+        if (jwtSecurityToken is null) return;
+
+        JwtBearer = new JwtBearerModel(Convert.ToInt32(jwtSecurityToken.Claims.First(c => c.Type == "NameIdentifier").Value), jwtSecurityToken.Claims.First(c => c.Type == "UserName").Value, jwtSecurityToken.Claims.First(c => c.Type == "Role").Value);
     }
 }

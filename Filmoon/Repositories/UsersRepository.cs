@@ -11,12 +11,12 @@ namespace Filmoon.Repositories
 {
     public class UsersRepository
     {
-        private HttpClient HttpClient { get; }
-
         public UsersRepository(HttpClient httpClient)
         {
             HttpClient = httpClient;
         }
+
+        private HttpClient HttpClient { get; }
 
         public async Task<List<UserEntity>> GetAsync()
         {

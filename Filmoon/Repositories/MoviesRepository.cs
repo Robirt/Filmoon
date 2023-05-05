@@ -1,44 +1,44 @@
 ﻿using Filmoon.Entities;
-using System;
+using Filmoon.Responses;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Filmoon.Repositories
+namespace Filmoon.Repositories;
+
+public class MoviesRepository
 {
-    public class MoviesRepository
+    public MoviesRepository(HttpClient httpClient)
     {
-        private HttpClient HttpClient { get; }
+        HttpClient = httpClient;
+    }
 
-        public MoviesRepository(HttpClient httpClient)
-        {
-            HttpClient = httpClient;
-        }
+    private HttpClient HttpClient { get; }
 
-        public async Task<List<MovieEntity>> GetAsync()
-        {
-            return await HttpClient.GetFromJsonAsync<List<MovieEntity>>("/Movies");
-        }
+    public async Task<List<MovieEntity>?> GetAsync()
+    {
+        return await HttpClient.GetFromJsonAsync<List<MovieEntity>>("/Movies");
+    }
 
-        public async Task<MovieEntity> GetByIdAsync(int id)
-        {
-            return await HttpClient.GetFromJsonAsync<MovieEntity>($"/Movies/{id}");
-        }
-        public async Task AddAsync(MovieEntity movie)
-        {
-            await HttpClient.PostAsJsonAsync("/Movies", movie);
-        }
-        public async Task UpdateAsync(MovieEntity movie)
-        {
-            await HttpClient.PutAsJsonAsync("/Movies", movie);
-        }
-        public async Task DeleteAsync(int id)
-        {
-            await HttpClient.DeleteAsync($"/Movies/{id}");
-        }
+    public async Task<MovieEntity?> GetByIdAsync(int id)
+    {
+        return await HttpClient.GetFromJsonAsync<MovieEntity>($"/Movies/{id}");
+    }
+
+    public async Task<ActionResponse?> AddAsync(MovieEntity movie)
+    {
+        return await (await HttpClient.PostAsJsonAsync("/Movies", movie)).Content.ReadFromJsonAsync<ActionResponse>();
+    }
+
+    public async Task<ActionResponse?> UpdateAsync(MovieEntity movie)
+    {
+        return await (await HttpClient.PutAsJsonAsync("/Movies", movie)).Content.ReadFromJsonAsync<ActionResponse>();
+    }
+
+    public async Task<ActionResponse?> DeleteAsync(int id)
+    {
+        return await (await HttpClient.DeleteAsync($"/Movies/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
     }
 }
 

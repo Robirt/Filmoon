@@ -29,6 +29,6 @@ public class AddDirectorPageViewModel : ViewModelBase
 
     private async void AddDirectorAsync(object? parameter)
     {
-        await DirectorsService.AddDirectorAsync(parameter as DirectorEntity);
+        await DirectorsService.AddAsync(parameter as DirectorEntity);
     }
 }

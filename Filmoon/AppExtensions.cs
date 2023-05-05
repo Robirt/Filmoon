@@ -19,7 +19,7 @@ public static class AppExtensions
 
     public static IServiceCollection AddHttpClient(this IServiceCollection services)
     {
-        services.AddHttpClient("HttpClient", httpClient => httpClient.BaseAddress = new Uri("https://localhost:5000/"));
+        services.AddHttpClient("HttpClient", httpClient => httpClient.BaseAddress = new Uri("https://localhost:5000/WebAPI/"));
 
         return services;
     }
@@ -31,12 +31,16 @@ public static class AppExtensions
 
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        services.AddSingleton<UsersService>();
+
         return services;
     }
 
     public static IServiceCollection AddViewModels(this IServiceCollection services)
     {
         services.AddSingleton<MainWindowViewModel>();
+
+        services.AddSingleton<SignInPageViewModel>();
 
         services.AddSingleton<HomePageViewModel>();
 
@@ -46,6 +50,8 @@ public static class AppExtensions
     public static IServiceCollection AddViews(this IServiceCollection services)
     {
         services.AddSingleton<MainWindow>();
+
+        services.AddSingleton<SignInPage>();
 
         services.AddSingleton<HomePage>();
 

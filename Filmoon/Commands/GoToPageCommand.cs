@@ -14,10 +14,7 @@ public class GoToPageCommand : ICommand
 
     public event EventHandler? CanExecuteChanged;
 
-    public bool CanExecute(object? parameter)
-    {
-        throw new NotImplementedException();
-    }
+    public bool CanExecute(object? parameter) => true;
 
     public void Execute(object? parameter)
     {

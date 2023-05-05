@@ -15,12 +15,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Frame Grid.Row="0"/>
-        <StackPanel Orientation="Horizontal">
+        <Frame Grid.Row="0" Content="{Binding Content}" NavigationUIVisibility="Hidden"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
             <ItemsControl ItemsSource="{Binding Routes}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Name}" CommandParameter="{Binding Name}" Command="{Binding }"/>
+                        <Button Content="{Binding Name}" Command="{Binding GoToPageCommand}" CommandParameter="{Binding Name}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

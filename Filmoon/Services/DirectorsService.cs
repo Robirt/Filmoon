@@ -1,21 +1,37 @@
 ﻿using Filmoon.Entities;
-using System.Net.Http;
-using System.Net.Http.Json;
+using Filmoon.Repositories;
+using Filmoon.Responses;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Filmoon.Services;
 
 public class DirectorsService
 {
-    public DirectorsService(HttpClient httpClient)
+    public DirectorsService(DirectorsRepository directorsRepository)
     {
-        HttpClient = httpClient;
+        DirectorsRepository = directorsRepository;
     }
 
-    private HttpClient HttpClient { get; }
+    private DirectorsRepository DirectorsRepository { get; }
 
-    public async Task AddDirectorAsync(DirectorEntity director)
+    public async Task<List<DirectorEntity>?> GetAsync()
     {
-        await HttpClient.PostAsJsonAsync("/Directors", director);
+        return await DirectorsRepository.GetAsync();
+    }
+
+    public async Task<ActionResponse?> AddAsync(DirectorEntity director)
+    {
+        return await DirectorsRepository.AddAsync(director);
+    }
+
+    public async Task<ActionResponse?> UpdateAsync(DirectorEntity director)
+    {
+        return await DirectorsRepository.UpdateAsync(director);
+    }
+
+    public async Task<ActionResponse?> DeleteAsync(DirectorEntity director)
+    {
+        return await DirectorsRepository.DeleteAsync(director.Id);
     }
 }

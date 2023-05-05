@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:Filmoon.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SignInPage"
-      Background="White">
+      Title="SignInPage">
     <Page.Resources>
         <ResourceDictionary Source="../../ResourceDictionaries/Pages/AddPageDictionary.xaml"/>
     </Page.Resources>
@@ -24,22 +23,15 @@
         </StackPanel>
         <StackPanel  Grid.Row="1" Orientation="Horizontal">
             <Label Content="Login:"/>
-            <TextBox />
+            <TextBox Text="{Binding SignInRequest.UserName}"/>
         </StackPanel>
         <StackPanel  Grid.Row="2" Orientation="Horizontal">
             <Label Content="Hasło:"/>
-            <PasswordBox/>
+            <TextBox Text="{Binding SignInRequest.Password}"/>
         </StackPanel>
 
         <StackPanel  Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBox Text="Jeśli nie masz konta. Kliknij tutaj i zarejestruj się." FontSize="18.5" >
-                <TextBox.BorderBrush>
-                    <SolidColorBrush Color="#EC5800" />
-                </TextBox.BorderBrush>
-                <TextBox.BorderThickness>
-                    <Thickness Top="0" Left="0" Right="0" Bottom="3" />
-                </TextBox.BorderThickness>
-            </TextBox>
+            <Label Content="Jeśli nie masz konta. Kliknij tutaj i zarejestruj się." FontSize="18.5"/>
         </StackPanel>
 
         <Button Grid.Row="4" Style="{StaticResource ResourceKey=Main}" Command="{Binding SignInCommand}" CommandParameter="{Binding SignInRequest}">
@@ -51,7 +43,7 @@
                     <Setter Property="CornerRadius" Value="10"></Setter>
                 </Style>
             </Button.Resources>
-            Dodaj
+            Zaloguj się
         </Button>
 
     </Grid>

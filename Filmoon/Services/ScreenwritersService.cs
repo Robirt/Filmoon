@@ -1,4 +1,5 @@
 ﻿using Filmoon.Entities;
+using Filmoon.Responses;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -14,8 +15,8 @@ public class ScreenwritersService
 
     private HttpClient HttpClient { get; }
 
-    public async Task AddScreenwriterAsync(ScreenwriterEntity screenwriter)
+    public async Task<ActionResponse?> AddScreenwriterAsync(ScreenwriterEntity screenwriter)
     {
-        await HttpClient.PostAsJsonAsync<ScreenwriterEntity>("/Screenwriters", screenwriter);
+        return await (await HttpClient.PostAsJsonAsync("/Screenwriters", screenwriter)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 }

@@ -2,6 +2,8 @@
 
 public class SignInResponse : ActionResponse
 {
+    public SignInResponse() : base() {}
+
     public SignInResponse(bool succeeded, string message) : base(succeeded, message) {}
 
     public SignInResponse(bool succeeded, string message, string token) : base(succeeded, message)
