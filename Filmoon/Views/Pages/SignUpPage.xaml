@@ -21,11 +21,11 @@
             <Label Content="Zarejestruj się!" Style="{StaticResource ResourceKey=Header}"/>
         </StackPanel>
         <StackPanel  Grid.Row="1" Orientation="Horizontal">
-            <Label Content="Login:"/>
+            <Label Content="Login:" Foreground="White"/>
             <TextBox />
         </StackPanel>
         <StackPanel  Grid.Row="2" Orientation="Horizontal">
-            <Label Content="Hasło:"/>
+            <Label Content="Hasło:" Foreground="White"/>
             <PasswordBox/>
         </StackPanel>
 

@@ -22,16 +22,16 @@
             <Label Content="Zaloguj się!" Style="{StaticResource ResourceKey=Header}"/>
         </StackPanel>
         <StackPanel  Grid.Row="1" Orientation="Horizontal">
-            <Label Content="Login:"/>
+            <Label Content="Login:" Foreground="White"/>
             <TextBox Text="{Binding SignInRequest.UserName}"/>
         </StackPanel>
         <StackPanel  Grid.Row="2" Orientation="Horizontal">
-            <Label Content="Hasło:"/>
+            <Label Content="Hasło:" Foreground="White"/>
             <TextBox Text="{Binding SignInRequest.Password}"/>
         </StackPanel>
 
         <StackPanel  Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="Jeśli nie masz konta. Kliknij tutaj i zarejestruj się." FontSize="18.5"/>
+            <TextBox Text="Jeśli nie masz konta. Kliknij tutaj i zarejestruj się." FontSize="18.5"/>
         </StackPanel>
 
         <Button Grid.Row="4" Style="{StaticResource ResourceKey=Main}" Command="{Binding SignInCommand}" CommandParameter="{Binding SignInRequest}">

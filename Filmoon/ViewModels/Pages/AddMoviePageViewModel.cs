@@ -29,6 +29,6 @@ public class AddMoviePageViewModel : ViewModelBase
 
     private async void AddMovieAsync(object? parameter)
     {
-        await MoviesService.AddMovieAsync(parameter as MovieEntity);
+        await MoviesService.AddAsync(parameter as MovieEntity);
     }
 }

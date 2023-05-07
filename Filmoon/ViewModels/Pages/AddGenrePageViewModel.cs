@@ -29,6 +29,6 @@ public class AddGenrePageViewModel: ViewModelBase
 
     private async void AddGenreAsync(object? parameter)
     {
-        await GenresService.AddGenreAsync(parameter as GenreEntity);
+        await GenresService.AddAsync(parameter as GenreEntity);
     }
 }

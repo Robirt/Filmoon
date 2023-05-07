@@ -6,6 +6,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -33,7 +34,20 @@ public class UsersService
 
     public async Task<SignInResponse?> SignInAsync(SignInRequest request)
     {
-        return await (await HttpClient.PostAsJsonAsync("Users/SignIn", request)).Content.ReadFromJsonAsync<SignInResponse>();
+        var signInResponse = await (await HttpClient.PostAsJsonAsync("Users/SignIn", request)).Content.ReadFromJsonAsync<SignInResponse>();
+
+        if (signInResponse is null) return new SignInResponse(false, "Empty response.");
+
+        if (signInResponse.Succeeded)
+        {
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", signInResponse.Token);
+
+            ConvertJwtBearerToken(signInResponse.Token);
+
+            OnSignIn(signInResponse);
+        }
+
+        return signInResponse;
     }
 
     public async Task<ActionResponse> SignUpAsync(SignUpRequest request)
@@ -44,6 +58,10 @@ public class UsersService
 
     public void SignOutAsync(ActionResponse actionResponse)
     {
+        HttpClient.DefaultRequestHeaders.Remove("Authorization");
+
+        JwtBearer = new JwtBearerModel();
+
         SignOut?.Invoke(this, actionResponse);
     }
 
@@ -53,6 +71,6 @@ public class UsersService
 
         if (jwtSecurityToken is null) return;
 
-        JwtBearer = new JwtBearerModel(Convert.ToInt32(jwtSecurityToken.Claims.First(c => c.Type == "NameIdentifier").Value), jwtSecurityToken.Claims.First(c => c.Type == "UserName").Value, jwtSecurityToken.Claims.First(c => c.Type == "Role").Value);
+        JwtBearer = new JwtBearerModel(Convert.ToInt32(jwtSecurityToken.Claims.First(c => c.Type == "nameid").Value), jwtSecurityToken.Claims.First(c => c.Type == "unique_name").Value, jwtSecurityToken.Claims.First(c => c.Type == "role").Value);
     }
 }
