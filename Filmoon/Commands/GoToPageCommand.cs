@@ -5,12 +5,12 @@ namespace Filmoon.Commands;
 
 public class GoToPageCommand : ICommand
 {
-    public GoToPageCommand(Action action)
+    public GoToPageCommand(Action<string> action)
     {
         Action = action;
     }
 
-    private Action Action { get; }
+    private Action<string> Action { get; }
 
     public event EventHandler? CanExecuteChanged;
 
@@ -18,6 +18,6 @@ public class GoToPageCommand : ICommand
 
     public void Execute(object? parameter)
     {
-        throw new NotImplementedException();
+        Action.Invoke((parameter as string)!);
     }
 }

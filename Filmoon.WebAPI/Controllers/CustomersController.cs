@@ -1,4 +1,5 @@
-﻿using Filmoon.Requests;
+﻿using Filmoon.Entities;
+using Filmoon.Requests;
 using Filmoon.Responses;
 using Filmoon.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -18,6 +19,13 @@ public class CustomersController : ControllerBase
     }
 
     private CustomersService CustomersService { get; }
+
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<List<CustomerEntity>>> GetAsync()
+    {
+        return await CustomersService.GetAsync();
+    }
 
     [HttpPost]
     [AllowAnonymous]

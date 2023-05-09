@@ -18,24 +18,12 @@ namespace Filmoon.WebAPI.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("DirectorEntityMovieEntity", b =>
-                {
-                    b.Property<int>("DirectorsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MoviesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DirectorsId", "MoviesId");
-
-                    b.HasIndex("MoviesId");
-
-                    b.ToTable("DirectorEntityMovieEntity");
-                });
 
             modelBuilder.Entity("Filmoon.Entities.DirectorEntity", b =>
                 {
@@ -69,16 +57,11 @@ namespace Filmoon.WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("MovieEntityId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MovieEntityId");
 
                     b.ToTable("Genres");
                 });
@@ -95,6 +78,12 @@ namespace Filmoon.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DirectorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LengthInMinutes")
                         .HasColumnType("int");
 
@@ -107,11 +96,20 @@ namespace Filmoon.WebAPI.Migrations
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ScreenwriterId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DirectorId");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("ScreenwriterId");
 
                     b.ToTable("Movies");
                 });
@@ -228,21 +226,6 @@ namespace Filmoon.WebAPI.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("MovieEntityScreenwriterEntity", b =>
-                {
-                    b.Property<int>("MoviesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ScreenwritersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MoviesId", "ScreenwritersId");
-
-                    b.HasIndex("ScreenwritersId");
-
-                    b.ToTable("MovieEntityScreenwriterEntity");
-                });
-
             modelBuilder.Entity("Filmoon.Entities.AdministratorEntity", b =>
                 {
                     b.HasBaseType("Filmoon.Entities.UserEntity");
@@ -257,26 +240,25 @@ namespace Filmoon.WebAPI.Migrations
                     b.HasDiscriminator().HasValue("CustomerEntity");
                 });
 
-            modelBuilder.Entity("DirectorEntityMovieEntity", b =>
+            modelBuilder.Entity("Filmoon.Entities.MovieEntity", b =>
                 {
-                    b.HasOne("Filmoon.Entities.DirectorEntity", null)
-                        .WithMany()
-                        .HasForeignKey("DirectorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Filmoon.Entities.DirectorEntity", "Director")
+                        .WithMany("Movies")
+                        .HasForeignKey("DirectorId");
 
-                    b.HasOne("Filmoon.Entities.MovieEntity", null)
+                    b.HasOne("Filmoon.Entities.GenreEntity", "Genre")
                         .WithMany()
-                        .HasForeignKey("MoviesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                        .HasForeignKey("GenreId");
 
-            modelBuilder.Entity("Filmoon.Entities.GenreEntity", b =>
-                {
-                    b.HasOne("Filmoon.Entities.MovieEntity", null)
-                        .WithMany("Genres")
-                        .HasForeignKey("MovieEntityId");
+                    b.HasOne("Filmoon.Entities.ScreenwriterEntity", "Screenwriter")
+                        .WithMany("Movies")
+                        .HasForeignKey("ScreenwriterId");
+
+                    b.Navigation("Director");
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("Screenwriter");
                 });
 
             modelBuilder.Entity("Filmoon.Entities.RentalEntity", b =>
@@ -303,24 +285,14 @@ namespace Filmoon.WebAPI.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("MovieEntityScreenwriterEntity", b =>
+            modelBuilder.Entity("Filmoon.Entities.DirectorEntity", b =>
                 {
-                    b.HasOne("Filmoon.Entities.MovieEntity", null)
-                        .WithMany()
-                        .HasForeignKey("MoviesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Filmoon.Entities.ScreenwriterEntity", null)
-                        .WithMany()
-                        .HasForeignKey("ScreenwritersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Movies");
                 });
 
-            modelBuilder.Entity("Filmoon.Entities.MovieEntity", b =>
+            modelBuilder.Entity("Filmoon.Entities.ScreenwriterEntity", b =>
                 {
-                    b.Navigation("Genres");
+                    b.Navigation("Movies");
                 });
 
             modelBuilder.Entity("Filmoon.Entities.CustomerEntity", b =>

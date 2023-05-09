@@ -30,8 +30,8 @@ public class DirectorsService
         return await DirectorsRepository.UpdateAsync(director);
     }
 
-    public async Task<ActionResponse?> DeleteAsync(DirectorEntity director)
+    public async Task<ActionResponse?> RemoveAsync(DirectorEntity director)
     {
-        return await DirectorsRepository.DeleteAsync(director.Id);
+        return await DirectorsRepository.RemoveAsync(director.Id);
     }
 }

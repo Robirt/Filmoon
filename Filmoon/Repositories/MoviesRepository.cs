@@ -18,27 +18,27 @@ public class MoviesRepository
 
     public async Task<List<MovieEntity>?> GetAsync()
     {
-        return await HttpClient.GetFromJsonAsync<List<MovieEntity>>("/Movies");
+        return await HttpClient.GetFromJsonAsync<List<MovieEntity>>("Movies");
     }
 
     public async Task<MovieEntity?> GetByIdAsync(int id)
     {
-        return await HttpClient.GetFromJsonAsync<MovieEntity>($"/Movies/{id}");
+        return await HttpClient.GetFromJsonAsync<MovieEntity>($"Movies/{id}");
     }
 
     public async Task<ActionResponse?> AddAsync(MovieEntity movie)
     {
-        return await (await HttpClient.PostAsJsonAsync("/Movies", movie)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.PostAsJsonAsync("Movies", movie)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
     public async Task<ActionResponse?> UpdateAsync(MovieEntity movie)
     {
-        return await (await HttpClient.PutAsJsonAsync("/Movies", movie)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.PutAsJsonAsync("Movies", movie)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
-    public async Task<ActionResponse?> DeleteAsync(int id)
+    public async Task<ActionResponse?> RemoveAsync(int id)
     {
-        return await (await HttpClient.DeleteAsync($"/Movies/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.DeleteAsync($"Movies/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
     }
 }
 

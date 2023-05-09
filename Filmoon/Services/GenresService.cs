@@ -30,8 +30,8 @@ public class GenresService
         return await GenresRepository.UpdateAsync(genre);
     }
 
-    public async Task<ActionResponse?> DeleteAsync(GenreEntity genre)
+    public async Task<ActionResponse?> RemoveAsync(GenreEntity genre)
     {
-        return await GenresRepository.DeleteAsync(genre.Id);
+        return await GenresRepository.RemoveAsync(genre.Id);
     }
 }

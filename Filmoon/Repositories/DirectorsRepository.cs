@@ -18,26 +18,26 @@ public class DirectorsRepository
 
     public async Task<List<DirectorEntity>?> GetAsync()
     {
-        return await HttpClient.GetFromJsonAsync<List<DirectorEntity>>("/Directors");
+        return await HttpClient.GetFromJsonAsync<List<DirectorEntity>>("Directors");
     }
 
     public async Task<DirectorEntity?> GetByIdAsync(int id)
     {
-        return await HttpClient.GetFromJsonAsync<DirectorEntity>($"/Directors/{id}");
+        return await HttpClient.GetFromJsonAsync<DirectorEntity>($"Directors/{id}");
     }
 
     public async Task<ActionResponse?> AddAsync(DirectorEntity director)
     {
-        return await (await HttpClient.PostAsJsonAsync("/Directors", director)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.PostAsJsonAsync("Directors", director)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
     public async Task<ActionResponse?> UpdateAsync(DirectorEntity director)
     {
-        return await (await HttpClient.PutAsJsonAsync("/Directors", director)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.PutAsJsonAsync("Directors", director)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
-    public async Task<ActionResponse?> DeleteAsync(int id)
+    public async Task<ActionResponse?> RemoveAsync(int id)
     {
-        return await (await HttpClient.DeleteAsync($"/Directors/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.DeleteAsync($"Directors/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
     }
 }

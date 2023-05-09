@@ -1,5 +1,4 @@
-﻿using Filmoon.Entities;
-using Filmoon.Models;
+﻿using Filmoon.Models;
 using Filmoon.Requests;
 using Filmoon.Responses;
 using System;
@@ -14,23 +13,18 @@ namespace Filmoon.Services;
 
 public class UsersService
 {
-    public UsersService(IHttpClientFactory httpClientFactory)
+    public UsersService(HttpClient httpClient)
     {
-        HttpClient = httpClientFactory.CreateClient("HttpClient");
+        HttpClient = httpClient;
     }
 
     private HttpClient HttpClient { get; }
 
     public JwtBearerModel JwtBearer { get; private set; } = new();
 
-    public event EventHandler<SignInResponse>? SignIn;
+    public event EventHandler<SignInResponse>? SignedIn;
 
-    public event EventHandler<ActionResponse>? SignOut;
-
-    public void OnSignIn(SignInResponse signInResponse)
-    {
-        SignIn?.Invoke(this, signInResponse);
-    }
+    public event EventHandler<ActionResponse>? SignedOut;
 
     public async Task<SignInResponse?> SignInAsync(SignInRequest request)
     {
@@ -44,16 +38,10 @@ public class UsersService
 
             ConvertJwtBearerToken(signInResponse.Token);
 
-            OnSignIn(signInResponse);
+            OnSignedIn(signInResponse);
         }
 
         return signInResponse;
-    }
-
-    public async Task<ActionResponse> SignUpAsync(SignUpRequest request)
-    {
-        var response = await HttpClient.PostAsJsonAsync("/Users/SignUp", request);
-        return await response.Content.ReadFromJsonAsync<ActionResponse>();
     }
 
     public void SignOutAsync(ActionResponse actionResponse)
@@ -62,7 +50,22 @@ public class UsersService
 
         JwtBearer = new JwtBearerModel();
 
-        SignOut?.Invoke(this, actionResponse);
+        SignedOut?.Invoke(this, actionResponse);
+    }
+
+    public async Task<ActionResponse?> SignUpAsync(SignUpRequest request)
+    {
+        return await (await HttpClient.PostAsJsonAsync("Customers", request)).Content.ReadFromJsonAsync<ActionResponse>();
+    }
+
+    public void OnSignedIn(SignInResponse signInResponse)
+    {
+        SignedIn?.Invoke(this, signInResponse);
+    }
+
+    public void OnSignedOut(SignInResponse signInResponse)
+    {
+        SignedOut?.Invoke(this, signInResponse);
     }
 
     private void ConvertJwtBearerToken(string jwtBearer)

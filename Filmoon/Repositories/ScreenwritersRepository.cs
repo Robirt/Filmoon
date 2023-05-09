@@ -18,26 +18,26 @@ public class ScreenwritersRepository
 
     public async Task<List<ScreenwriterEntity>?> GetAsync()
     {
-        return await HttpClient.GetFromJsonAsync<List<ScreenwriterEntity>>("/Screenwriters");
+        return await HttpClient.GetFromJsonAsync<List<ScreenwriterEntity>>("Screenwriters");
     }
 
     public async Task<ScreenwriterEntity?> GetByIdAsync(int id)
     {
-        return await HttpClient.GetFromJsonAsync<ScreenwriterEntity>($"/Screenwriters/{id}");
+        return await HttpClient.GetFromJsonAsync<ScreenwriterEntity>($"Screenwriters/{id}");
     }
 
     public async Task<ActionResponse?> AddAsync(ScreenwriterEntity screenwriter)
     {
-        return await (await HttpClient.PostAsJsonAsync("/Screenwriters", screenwriter)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.PostAsJsonAsync("Screenwriters", screenwriter)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
     public async Task<ActionResponse?> UpdateAsync(ScreenwriterEntity screenwriter)
     {
-        return await (await HttpClient.PutAsJsonAsync("/Screenwriters", screenwriter)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.PutAsJsonAsync("Screenwriters", screenwriter)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
-    public async Task<ActionResponse?> DeleteAsync(int id)
+    public async Task<ActionResponse?> RemoveAsync(int id)
     {
-        return await (await HttpClient.DeleteAsync($"/Screenwriters/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.DeleteAsync($"Screenwriters/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
     }
 }

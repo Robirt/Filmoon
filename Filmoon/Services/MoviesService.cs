@@ -24,4 +24,14 @@ public class MoviesService
     {
         return await MoviesRepository.AddAsync(movie);
     }
+
+    public async Task<ActionResponse?> UpdateAsync(MovieEntity movie)
+    {
+        return await MoviesRepository.UpdateAsync(movie);
+    }
+
+    public async Task<ActionResponse?> RemoveAsync(MovieEntity movie)
+    {
+        return await MoviesRepository.RemoveAsync(movie.Id);
+    }
 }

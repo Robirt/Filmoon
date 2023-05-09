@@ -36,7 +36,7 @@ public class RentalsRepository
         return await (await HttpClient.PutAsJsonAsync("/Rentals", rental)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
-    public async Task<ActionResponse?> DeleteAsync(int id)
+    public async Task<ActionResponse?> RemoveAsync(int id)
     {
         return await (await HttpClient.DeleteAsync($"/Rentals/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
     }

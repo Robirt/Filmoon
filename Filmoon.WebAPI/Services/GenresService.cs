@@ -45,8 +45,6 @@ public class GenresService
 
     public async Task<ActionResponse> UpdateAsync(GenreEntity genre)
     {
-        if (await GenresRepository.GetByIdAsync(genre.Id) is null) return new ActionResponse(false, $"Genre with Id {genre.Id} was not found.");
-
         try
         {
             await GenresRepository.UpdateAsync(genre);

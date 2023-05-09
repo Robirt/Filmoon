@@ -1,22 +1,37 @@
 ﻿using Filmoon.Entities;
+using Filmoon.Repositories;
 using Filmoon.Responses;
-using System.Net.Http;
-using System.Net.Http.Json;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Filmoon.Services;
 
 public class ScreenwritersService
 {
-    public ScreenwritersService(HttpClient httpClient)
+    public ScreenwritersService(ScreenwritersRepository screenwritersRepository)
     {
-        HttpClient = httpClient;
+        ScreenwritersRepository = screenwritersRepository;
     }
 
-    private HttpClient HttpClient { get; }
+    private ScreenwritersRepository ScreenwritersRepository { get; }
 
-    public async Task<ActionResponse?> AddScreenwriterAsync(ScreenwriterEntity screenwriter)
+    public async Task<List<ScreenwriterEntity>?> GetAsync()
     {
-        return await (await HttpClient.PostAsJsonAsync("/Screenwriters", screenwriter)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await ScreenwritersRepository.GetAsync();
+    }
+
+    public async Task<ActionResponse?> AddAsync(ScreenwriterEntity screenwriter)
+    {
+        return await ScreenwritersRepository.AddAsync(screenwriter);
+    }
+
+    public async Task<ActionResponse?> UpdateAsync(ScreenwriterEntity screenwriter)
+    {
+        return await ScreenwritersRepository.UpdateAsync(screenwriter);
+    }
+
+    public async Task<ActionResponse?> RemoveAsync(ScreenwriterEntity screenwriter)
+    {
+        return await ScreenwritersRepository.RemoveAsync(screenwriter.Id);
     }
 }
