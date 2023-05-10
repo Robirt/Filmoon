@@ -21,6 +21,13 @@ public class CatalogPageViewModel : ViewModelBase
         set { SetProperty(ref movies, value); }
     }
 
+    private MovieEntity movie = new();
+    public MovieEntity Movie
+    {
+        get { return movie; }
+        set { SetProperty(ref movie, value); }
+    }
+
     public async Task GetMovies()
     {
         Movies = await MoviesService.GetAsync();
