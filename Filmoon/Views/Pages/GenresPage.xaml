@@ -5,8 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
-    d:DesignWidth="1600"
-    d:DesignHeight="850"
+    d:DesignWidth="1920"
+    d:DesignHeight="1030"
     Title="Genres">
     <Page.Resources>
         <ResourceDictionary Source="../../ResourceDictionaries/Pages/FormsDictionary.xaml"/>

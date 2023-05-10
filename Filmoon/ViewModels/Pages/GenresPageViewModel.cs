@@ -21,18 +21,18 @@ public class GenresPageViewModel : ViewModelBase
 
     private GenresService GenresService { get; }
 
-    private List<GenreEntity>? directors = new();
+    private List<GenreEntity>? genres = new();
     public List<GenreEntity>? Genres
     {
-        get { return directors; }
-        set { SetProperty(ref directors, value); }
+        get { return genres; }
+        set { SetProperty(ref genres, value); }
     }
 
-    private GenreEntity director = new();
+    private GenreEntity genre = new();
     public GenreEntity Genre
     {
-        get { return director; }
-        set { SetProperty(ref director, value); }
+        get { return genre; }
+        set { SetProperty(ref genre, value); }
     }
 
     private ActionResponse? actionResponse = new();

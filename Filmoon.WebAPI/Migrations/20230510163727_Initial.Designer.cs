@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Filmoon.WebAPI.Migrations
 {
     [DbContext(typeof(FilmoonContext))]
-    [Migration("20230509161213_Initial")]
+    [Migration("20230510163727_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -89,9 +89,6 @@ namespace Filmoon.WebAPI.Migrations
 
                     b.Property<int>("LengthInMinutes")
                         .HasColumnType("int");
-
-                    b.Property<byte[]>("Poster")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");

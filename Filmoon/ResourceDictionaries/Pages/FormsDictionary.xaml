@@ -77,7 +77,7 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="FontSize" Value="20"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForegroundColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryAccentColor}"/>
     </Style>
 
     <Style TargetType="TextBox">
@@ -92,7 +92,7 @@
         <Setter Property="CaretBrush" Value="{StaticResource PrimaryAccentColor}"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontWeight" Value="Light"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryForegroundColor}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -149,60 +149,24 @@
     <Style TargetType="ComboBox">
         <Setter Property="Margin" Value="0, 10"/>
         <Setter Property="Width" Value="325"/>
-        <Setter Property="Height" Value="32.5"/>
+        <Setter Property="Height" Value="45"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryForegroundColor}"/>
-        <Setter Property="Background" Value="Black"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontWeight" Value="Light"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForegroundColor}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Background" Value="Black"/>
     </Style>
 
     <Style TargetType="ComboBoxItem">
         <Setter Property="Width" Value="325"/>
-        <Setter Property="Height" Value="50"/>
-        <Setter Property="Background" Value="{StaticResource PrimaryBackgroundColor}"/>
+        <Setter Property="Height" Value="60"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontWeight" Value="Light"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForegroundColor}"/>
-    </Style>
-
-    <Style TargetType="Button" x:Key="SelectPosterButton">
-        <Setter Property="Margin" Value="0, 10"/>
-        <Setter Property="Width" Value="325"/>
-        <Setter Property="Height" Value="32.5"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryForegroundColor}"/>
-        <Setter Property="Background" Value="{StaticResource PrimaryAccentColor}"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontWeight" Value="Light"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForegroundColor}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="{StaticResource PrimaryForegroundColor}"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="BorderBrush" Value="{StaticResource PrimaryAccentColor}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FontSize" Value="18"/>
     </Style>
 
     <Style TargetType="Label" x:Key="ActionResponseMessage">

@@ -65,8 +65,8 @@ public static class AppExtensions
         services.AddSingleton<CatalogPageViewModel>();
         services.AddSingleton<RentalsPageViewModel>();
         services.AddSingleton<MoviePageViewModel>();
-        services.AddSingleton<DirectorsPageViewModel>();
         services.AddSingleton<ScreenwritersPageViewModel>();
+        services.AddSingleton<DirectorsPageViewModel>();
         services.AddSingleton<GenresPageViewModel>();
         services.AddSingleton<MoviesPageViewModel>();
         services.AddSingleton<AdministratorsPageViewModel>();
@@ -84,6 +84,7 @@ public static class AppExtensions
 
         services.AddSingleton<HomePage>();
         services.AddSingleton<CatalogPage>();
+        services.AddSingleton<RentalsPage>();
         services.AddSingleton<ContactPage>();
         services.AddSingleton<ScreenwritersPage>();
         services.AddSingleton<DirectorsPage>();

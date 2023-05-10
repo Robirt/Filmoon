@@ -87,9 +87,6 @@ namespace Filmoon.WebAPI.Migrations
                     b.Property<int>("LengthInMinutes")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Poster")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 

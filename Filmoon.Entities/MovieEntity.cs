@@ -10,8 +10,6 @@ public class MovieEntity
 
     public int ReleaseYear { get; set; }
 
-    public byte[]? Poster { get; set; }
-
     public int LengthInMinutes { get; set; }
 
     public double LengthInHours { get => LengthInMinutes / 60; }

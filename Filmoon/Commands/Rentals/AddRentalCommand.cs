@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Filmoon.Commands.Movies;
+namespace Filmoon.Commands.Rentals;
 
-public class SelectPosterCommand : ICommand
+public class AddRentalCommand : ICommand
 {
-    public SelectPosterCommand(Action action)
+    public AddRentalCommand(Action<object> action)
     {
         this.action = action;
     }
 
     public event EventHandler? CanExecuteChanged;
 
-    private Action action;
+    private Action<object> action;
 
     public bool CanExecute(object? parameter)
     {
+        if (parameter is null) return false;
+
         return true;
     }
 
     public void Execute(object? parameter)
     {
-        action.Invoke();
+        action.Invoke(parameter!);
     }
 }

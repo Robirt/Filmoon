@@ -18,26 +18,26 @@ public class RentalsRepository
 
     public async Task<List<RentalEntity>?> GetAsync()
     {
-        return await HttpClient.GetFromJsonAsync<List<RentalEntity>>("/Rentals");
+        return await HttpClient.GetFromJsonAsync<List<RentalEntity>>("Rentals");
     }
 
     public async Task<RentalEntity?> GetByIdAsync(int id)
     {
-        return await HttpClient.GetFromJsonAsync<RentalEntity>($"/Rentals/{id}");
+        return await HttpClient.GetFromJsonAsync<RentalEntity>($"Rentals/{id}");
     }
 
     public async Task<ActionResponse?> AddAsync(RentalEntity rental)
     {
-        return await (await HttpClient.PostAsJsonAsync("/Rentals", rental)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.PostAsJsonAsync("Rentals", rental)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
     public async Task<ActionResponse?> UpdateAsync(RentalEntity rental)
     {
-        return await (await HttpClient.PutAsJsonAsync("/Rentals", rental)).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.PutAsJsonAsync("Rentals", rental)).Content.ReadFromJsonAsync<ActionResponse>();
     }
 
     public async Task<ActionResponse?> RemoveAsync(int id)
     {
-        return await (await HttpClient.DeleteAsync($"/Rentals/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
+        return await (await HttpClient.DeleteAsync($"Rentals/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
     }
 }

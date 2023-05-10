@@ -27,6 +27,9 @@ public class RentalsService
     {
         try
         {
+            rental.StartDateTime = DateTime.Now;
+            rental.EndDateTime = DateTime.Now.AddDays(7);
+
             await RentalsRepository.AddAsync(rental);
 
             return new ActionResponse(true, "Rental was added successful.");
@@ -40,8 +43,6 @@ public class RentalsService
 
     public async Task<ActionResponse> UpdateAsync(RentalEntity rental)
     {
-        if (await RentalsRepository.GetByIdAsync(rental.Id) is null) return new ActionResponse(false, $"Rental with Id {rental.Id} was not found.");
-
         try
         {
             await RentalsRepository.UpdateAsync(rental);

@@ -19,8 +19,6 @@ public class MoviesPageViewModel : ViewModelBase
         ScreenwritersService = screenwritersService;
         DirectorsService = directorsService;
 
-        SelectPosterCommand = new SelectPosterCommand(SelectPoster);
-
         AddMovieCommand = new AddMovieCommand(AddMovieAsync);
         UpdateMovieCommand = new UpdateMovieCommand(UpdateMovieAsync);
         RemoveMovieCommand = new RemoveMovieCommand(RemoveMovieAsync);
@@ -93,24 +91,9 @@ public class MoviesPageViewModel : ViewModelBase
         Directors = await DirectorsService.GetAsync();
     }
 
-    public ICommand SelectPosterCommand { get; set; }
-
     public ICommand AddMovieCommand { get; set; }
     public ICommand UpdateMovieCommand { get; set; }
     public ICommand RemoveMovieCommand { get; set; }
-
-    private void SelectPoster()
-    {
-        OpenFileDialog openFileDialog = new OpenFileDialog() { Title = "Select poster", Filter = "Image Files (*.jpg;*.png)|*.jpg;*.png" };
-
-        if (openFileDialog.ShowDialog() == true)
-        {
-            using (FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open))
-            {
-                Movie.Poster = new BinaryReader(stream).ReadBytes((int)stream.Length);
-            }
-        }
-    }
 
     private async void AddMovieAsync(object? parameter)
     {
@@ -131,6 +114,13 @@ public class MoviesPageViewModel : ViewModelBase
 
     private async void UpdateMovieAsync(object? parameter)
     {
+        (parameter as MovieEntity)!.GenreId = (parameter as MovieEntity)!.Genre!.Id;
+        (parameter as MovieEntity)!.ScreenwriterId = (parameter as MovieEntity)!.Screenwriter!.Id;
+        (parameter as MovieEntity)!.DirectorId = (parameter as MovieEntity)!.Director!.Id;
+        (parameter as MovieEntity)!.Genre = null;
+        (parameter as MovieEntity)!.Screenwriter = null;
+        (parameter as MovieEntity)!.Director = null;
+
         ActionResponse = await MoviesService.UpdateAsync((parameter as MovieEntity)!);
 
         await GetMovies();

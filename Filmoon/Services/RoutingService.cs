@@ -22,6 +22,7 @@ public class RoutingService
     {
         new RouteModel("Home", new List<string> { "Customer" }),
         new RouteModel("Catalog", new List<string> { "Customer" }),
+        new RouteModel("Rentals", new List<string> { "Customer" }),
         new RouteModel("Contact", new List<string> { "Customer" }),
         new RouteModel("Movies", new List<string> { "Administrator" }),
         new RouteModel("Genres", new List<string> { "Administrator" }),

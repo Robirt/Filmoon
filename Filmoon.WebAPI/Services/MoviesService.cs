@@ -45,8 +45,6 @@ public class MoviesService
 
     public async Task<ActionResponse> UpdateAsync(MovieEntity movie)
     {
-        if (await MoviesRepository.GetByIdAsync(movie.Id) is null) return new ActionResponse(false, $"Movie with Id {movie.Id} was not found.");
-
         try
         {
             await MoviesRepository.UpdateAsync(movie);

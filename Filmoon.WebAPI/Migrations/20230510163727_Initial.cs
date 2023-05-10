@@ -99,7 +99,6 @@ namespace Filmoon.WebAPI.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReleaseYear = table.Column<int>(type: "int", nullable: false),
-                    Poster = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     LengthInMinutes = table.Column<int>(type: "int", nullable: false),
                     GenreId = table.Column<int>(type: "int", nullable: true),
                     DirectorId = table.Column<int>(type: "int", nullable: true),

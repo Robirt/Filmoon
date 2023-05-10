@@ -39,12 +39,8 @@
                     <TextBox Text="{Binding Movie.Description}"/>
                 </StackPanel>
                 <StackPanel>
-                    <TextBlock Text="Release Year:"/>
+                    <TextBlock Text="Release year:"/>
                     <TextBox Text="{Binding Movie.ReleaseYear}"/>
-                </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Poster:"/>
-                    <Button Content="Select poster" Style="{StaticResource SelectPosterButton}" Command="{Binding SelectPosterCommand}"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Length in minutes:"/>
@@ -52,7 +48,7 @@
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Genre:"/>
-                    <ComboBox ItemsSource="{Binding Genres}" SelectedItem="{Binding Movie.Genre, Mode=TwoWay}"/>
+                    <ComboBox ItemsSource="{Binding Genres}" SelectedItem="{Binding Movie.Genre, Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Screenwriter:"/>
