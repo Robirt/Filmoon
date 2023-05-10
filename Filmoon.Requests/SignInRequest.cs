@@ -1,0 +1,19 @@
+﻿namespace Filmoon.Requests;
+
+public class SignInRequest
+{
+    public SignInRequest()
+    {
+
+    }
+
+    public SignInRequest(string userName, string password)
+    {
+        UserName = userName;
+        Password = password;
+    }
+
+    public string UserName { get; set; } = string.Empty;
+
+    public string Password { get; set; } = string.Empty;
+}
