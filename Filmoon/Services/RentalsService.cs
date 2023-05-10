@@ -1,26 +1,37 @@
 ﻿using Filmoon.Entities;
-using System;
+using Filmoon.Repositories;
+using Filmoon.Responses;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Filmoon.Services
+namespace Filmoon.Services;
+
+public class RentalsService
 {
-    public class RentalsService
+    public RentalsService(RentalsRepository rentalsRepository)
     {
-        public RentalsService(HttpClient httpClient)
-        {
-            HttpClient = httpClient;
-        }
+        RentalsRepository = rentalsRepository;
+    }
 
-        private HttpClient HttpClient { get; }
+    private RentalsRepository RentalsRepository { get; }
 
-        public async Task AddRentalAsync(RentalEntity rental)
-        {
-            await HttpClient.PostAsJsonAsync<RentalEntity>("/Rentals", rental);
-        }
+    public async Task<List<RentalEntity>?> GetAsync()
+    {
+        return await RentalsRepository.GetAsync();
+    }
+
+    public async Task<ActionResponse?> AddAsync(RentalEntity rental)
+    {
+        return await RentalsRepository.AddAsync(rental);
+    }
+
+    public async Task<ActionResponse?> UpdateAsync(RentalEntity rental)
+    {
+        return await RentalsRepository.UpdateAsync(rental);
+    }
+
+    public async Task<ActionResponse?> RemoveAsync(RentalEntity rental)
+    {
+        return await RentalsRepository.RemoveAsync(rental.Id);
     }
 }

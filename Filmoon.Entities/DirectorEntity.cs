@@ -13,4 +13,6 @@ public class DirectorEntity
     public DateTime BirthDate { get; set; }
 
     public virtual List<MovieEntity>? Movies { get; set; }
+
+    public override string ToString() => FullName;
 }

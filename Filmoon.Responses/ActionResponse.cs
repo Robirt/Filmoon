@@ -2,6 +2,11 @@
 
 public class ActionResponse
 {
+    public ActionResponse()
+    {
+        
+    }
+
     public ActionResponse(bool succeeded, string message)
     {
         Succeeded = succeeded;

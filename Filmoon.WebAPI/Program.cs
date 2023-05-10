@@ -1,5 +1,6 @@
 using Filmoon.WebAPI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text.Json.Serialization;
 
 var webApplicationBuilder = WebApplication.CreateBuilder();
 
@@ -15,7 +16,7 @@ webApplicationBuilder.Services.AddRepositories();
 
 webApplicationBuilder.Services.AddServices();
 
-webApplicationBuilder.Services.AddControllers();
+webApplicationBuilder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 var webApplication = webApplicationBuilder.Build();
 

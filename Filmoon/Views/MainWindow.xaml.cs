@@ -1,6 +1,5 @@
 ﻿using Filmoon.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Filmoon.Views;
 

@@ -1,4 +1,5 @@
-﻿using Filmoon.Requests;
+﻿using Filmoon.Entities;
+using Filmoon.Requests;
 using Filmoon.Responses;
 using Filmoon.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,10 +20,16 @@ public class AdministratorsController : ControllerBase
 
     private AdministratorsService AdministratorsService { get; }
 
-    [HttpPost]
-    public async Task<ActionResult<ActionResponse>> AddAsync(SignUpRequest userSignUpRequest)
+    [HttpGet]
+    public async Task<ActionResult<List<AdministratorEntity>>> GetAsync()
     {
-        var actionResponse = await AdministratorsService.AddAsync(userSignUpRequest);
+        return Ok(await AdministratorsService.GetAsync());
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<ActionResponse>> AddAsync(SignUpRequest signUpRequest)
+    {
+        var actionResponse = await AdministratorsService.AddAsync(signUpRequest);
 
         return actionResponse.Succeeded ? Ok(actionResponse) : BadRequest(actionResponse);
     }

@@ -1,35 +1,48 @@
-﻿using Filmoon.Commands;
+﻿using Filmoon.Commands.Users;
+using Filmoon.Models;
 using Filmoon.Requests;
+using Filmoon.Responses;
 using Filmoon.Services;
 using System.Windows.Input;
 
-namespace Filmoon.ViewModels.Pages
+namespace Filmoon.ViewModels.Pages;
+
+public class SignUpPageViewModel : ViewModelBase
 {
-    public class SignUpPageViewModel: ViewModelBase
+    public SignUpPageViewModel(UsersService usersService, RoutingService routingService)
     {
-        public SignUpPageViewModel(UsersService usersService)
-        {
-            UsersService = usersService;
+        UsersService = usersService;
+        RoutingService = routingService;
 
-            SignUpRequest = new UserSignUpRequest();
+        SignUpRequest = new SignUpRequest();
 
-            SignUpCommand = new SignUpCommand(SignUpAsync);
-        }
-        private UsersService UsersService { get; }
+        SignUpCommand = new SignUpCommand(SignUpAsync);
+    }
 
-        private UserSignUpRequest signUpRequest;
+    private UsersService UsersService { get; }
 
-        public UserSignUpRequest SignUpRequest
-        {
-            get { return signUpRequest; }
-            set { SetProperty(ref signUpRequest, value); }
-        }
+    private RoutingService RoutingService { get; }
 
-        public ICommand SignUpCommand { get; set; }
+    private SignUpRequest signUpRequest = new();
+    public SignUpRequest SignUpRequest
+    {
+        get { return signUpRequest; }
+        set { SetProperty(ref signUpRequest, value); }
+    }
 
-        private async void SignUpAsync(object? parameter)
-        {
-            await UsersService.SignUpAsync(parameter as UserSignUpRequest);
-        }
+    private ActionResponse? actionResponse = new();
+    public ActionResponse? ActionResponse
+    {
+        get { return actionResponse; }
+        set { SetProperty(ref actionResponse, value); }
+    }
+
+    public ICommand SignUpCommand { get; set; }
+
+    private async void SignUpAsync(object? parameter)
+    {
+        ActionResponse = await UsersService.SignUpAsync((parameter as SignUpRequest)!);
+
+        if (ActionResponse!.Succeeded) RoutingService.OnPageRequested(new RouteModel("SignIn"));
     }
 }

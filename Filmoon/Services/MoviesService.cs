@@ -1,23 +1,37 @@
 ﻿using Filmoon.Entities;
 using Filmoon.Repositories;
-using System.Net.Http;
-using System.Net.Http.Json;
+using Filmoon.Responses;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Filmoon.Services
+namespace Filmoon.Services;
+
+public class MoviesService
 {
-    public class MoviesService
+    public MoviesService(MoviesRepository moviesRepository)
     {
-        public MoviesService(HttpClient httpClient)
-        {
-            HttpClient = httpClient;
-        }
+        MoviesRepository = moviesRepository;
+    }
 
-        private HttpClient HttpClient { get; }
+    private MoviesRepository MoviesRepository { get; }
 
-        public async Task AddMovieAsync(MovieEntity genre)
-        {
-            await HttpClient.PostAsJsonAsync<MovieEntity>("/Movies", genre);
-        }
+    public async Task<List<MovieEntity>?> GetAsync()
+    {
+        return await MoviesRepository.GetAsync();
+    }
+
+    public async Task<ActionResponse?> AddAsync(MovieEntity movie)
+    {
+        return await MoviesRepository.AddAsync(movie);
+    }
+
+    public async Task<ActionResponse?> UpdateAsync(MovieEntity movie)
+    {
+        return await MoviesRepository.UpdateAsync(movie);
+    }
+
+    public async Task<ActionResponse?> RemoveAsync(MovieEntity movie)
+    {
+        return await MoviesRepository.RemoveAsync(movie.Id);
     }
 }

@@ -1,43 +1,43 @@
 ﻿using Filmoon.Entities;
-using System;
+using Filmoon.Responses;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Filmoon.Repositories
+namespace Filmoon.Repositories;
+
+public class RentalsRepository
 {
-    public class RentalsRepository
+    public RentalsRepository(HttpClient httpClient)
     {
-        private HttpClient HttpClient { get; }
+        HttpClient = httpClient;
+    }
 
-        public RentalsRepository(HttpClient httpClient)
-        {
-            HttpClient = httpClient;
-        }
+    private HttpClient HttpClient { get; }
 
-        public async Task<List<RentalEntity>> GetAsync()
-        {
-            return await HttpClient.GetFromJsonAsync<List<RentalEntity>>("/Rentals");
-        }
+    public async Task<List<RentalEntity>?> GetAsync()
+    {
+        return await HttpClient.GetFromJsonAsync<List<RentalEntity>>("Rentals");
+    }
 
-        public async Task<RentalEntity> GetByIdAsync(int id)
-        {
-            return await HttpClient.GetFromJsonAsync<RentalEntity>($"/Rentals/{id}");
-        }
-        public async Task AddAsync(RentalEntity rental)
-        {
-            await HttpClient.PostAsJsonAsync("/Rentals", rental);
-        }
-        public async Task UpdateAsync(RentalEntity rental)
-        {
-            await HttpClient.PutAsJsonAsync("/Rentals", rental);
-        }
-        public async Task DeleteAsync(int id)
-        {
-            await HttpClient.DeleteAsync($"/Rentals/{id}");
-        }
+    public async Task<RentalEntity?> GetByIdAsync(int id)
+    {
+        return await HttpClient.GetFromJsonAsync<RentalEntity>($"Rentals/{id}");
+    }
+
+    public async Task<ActionResponse?> AddAsync(RentalEntity rental)
+    {
+        return await (await HttpClient.PostAsJsonAsync("Rentals", rental)).Content.ReadFromJsonAsync<ActionResponse>();
+    }
+
+    public async Task<ActionResponse?> UpdateAsync(RentalEntity rental)
+    {
+        return await (await HttpClient.PutAsJsonAsync("Rentals", rental)).Content.ReadFromJsonAsync<ActionResponse>();
+    }
+
+    public async Task<ActionResponse?> RemoveAsync(int id)
+    {
+        return await (await HttpClient.DeleteAsync($"Rentals/{id}")).Content.ReadFromJsonAsync<ActionResponse>();
     }
 }

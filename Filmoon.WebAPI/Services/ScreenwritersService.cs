@@ -40,8 +40,6 @@ public class ScreenwritersService
 
     public async Task<ActionResponse> UpdateAsync(ScreenwriterEntity screenwriter)
     {
-        if (await ScreenwritersRepository.GetByIdAsync(screenwriter.Id) is null) return new ActionResponse(false, $"Screenwriter with Id {screenwriter.Id} was not found.");
-
         try
         {
             await ScreenwritersRepository.UpdateAsync(screenwriter);

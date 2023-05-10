@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Filmoon.ViewModels.Pages;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace Filmoon.Views.Pages
+namespace Filmoon.Views.Pages;
+
+public partial class CatalogPage : Page
 {
-    /// <summary>
-    /// Interaction logic for CatalogPage.xaml
-    /// </summary>
-    public partial class CatalogPage : Page
+    public CatalogPage(CatalogPageViewModel catalogPageViewModel)
     {
-        public CatalogPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        DataContext = catalogPageViewModel;
+
+        Loaded += CatalogPage_Loaded;
+    }
+
+    private async void CatalogPage_Loaded(object sender, RoutedEventArgs e)
+    {
+        await (DataContext as CatalogPageViewModel)!.GetMovies();
     }
 }

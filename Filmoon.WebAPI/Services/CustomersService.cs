@@ -17,6 +17,11 @@ public class CustomersService
     private CustomersRepository CustomersRepository { get; }
     private UsersRepository UsersRepository { get; }
 
+    public async Task<List<CustomerEntity>> GetAsync()
+    {
+        return await CustomersRepository.GetAsync();
+    }
+
     public async Task<ActionResponse> SignUpAsync(SignUpRequest userSignUpRequest)
     {
         if (await UsersRepository.GetByUserNameAsync(userSignUpRequest.UserName) is not null) return new ActionResponse(false, $"User with name {userSignUpRequest.UserName} already exists.");

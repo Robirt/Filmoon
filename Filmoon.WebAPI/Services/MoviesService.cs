@@ -25,7 +25,7 @@ public class MoviesService
 
     public async Task<MovieEntity?> GetByTitleAsync(string title)
     {
-        return (await MoviesRepository.GetAsync(x => x.Title == title)).FirstOrDefault();
+        return (await MoviesRepository.GetAsync(m => m.Title == title)).FirstOrDefault();
     }
 
     public async Task<ActionResponse> AddAsync(MovieEntity movie)
@@ -45,8 +45,6 @@ public class MoviesService
 
     public async Task<ActionResponse> UpdateAsync(MovieEntity movie)
     {
-        if (await MoviesRepository.GetByIdAsync(movie.Id) is null) return new ActionResponse(false, $"Movie with Id {movie.Id} was not found.");
-
         try
         {
             await MoviesRepository.UpdateAsync(movie);

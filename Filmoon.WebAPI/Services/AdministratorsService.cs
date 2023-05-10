@@ -17,6 +17,11 @@ public class AdministratorsService
     private AdministratorsRepository AdministratorsRepository { get; }
     private UsersRepository UsersRepository { get; }
 
+    public async Task<List<AdministratorEntity>> GetAsync()
+    {
+        return await AdministratorsRepository.GetAsync();
+    }
+
     public async Task<ActionResponse> AddAsync(SignUpRequest userSignUpRequest)
     {
         if (await UsersRepository.GetByUserNameAsync(userSignUpRequest.UserName) is not null) return new ActionResponse(false, $"User with name {userSignUpRequest.UserName} already exists.");
