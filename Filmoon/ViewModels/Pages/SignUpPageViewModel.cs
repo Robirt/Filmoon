@@ -44,5 +44,7 @@ public class SignUpPageViewModel : ViewModelBase
         ActionResponse = await UsersService.SignUpAsync((parameter as SignUpRequest)!);
 
         if (ActionResponse!.Succeeded) RoutingService.OnPageRequested(new RouteModel("SignIn"));
+
+        SignUpRequest = new SignUpRequest();
     }
 }
