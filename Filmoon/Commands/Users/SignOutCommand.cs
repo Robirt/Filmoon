@@ -16,8 +16,6 @@ public class SignOutCommand : ICommand
 
     public bool CanExecute(object? parameter)
     {
-        if (parameter is null) return false;
-
         return true;
     }
 

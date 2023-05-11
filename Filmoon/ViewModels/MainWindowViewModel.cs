@@ -68,7 +68,7 @@ public class MainWindowViewModel : ViewModelBase
 
     private void UsersService_SignOut(object? sender, Responses.ActionResponse e)
     {
-        GoToPage("SignOut");
+        GoToPage("SignIn");
     }
 
     private void RoutingService_PageRequested(object? sender, RouteModel route) => GoToPage(route.Name);

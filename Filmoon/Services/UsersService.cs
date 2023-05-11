@@ -44,13 +44,13 @@ public class UsersService
         return signInResponse;
     }
 
-    public void SignOutAsync(ActionResponse actionResponse)
+    public void SignOutAsync()
     {
         HttpClient.DefaultRequestHeaders.Remove("Authorization");
 
         JwtBearer = new JwtBearerModel();
 
-        SignedOut?.Invoke(this, actionResponse);
+        SignedOut?.Invoke(this, new ActionResponse(true, "Users signed out."));
     }
 
     public async Task<ActionResponse?> SignUpAsync(SignUpRequest request)

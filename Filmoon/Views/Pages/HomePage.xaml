@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+    d:DesignWidth="1920"
+    d:DesignHeight="1030"
     Title="Home">
     <Page.Resources>
         <ResourceDictionary Source="../../ResourceDictionaries/Pages/HomePageDictionary.xaml"/>
@@ -34,57 +35,26 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="2" >
-            <Border Height="190" Width="210">
-                <StackPanel Orientation="Vertical">
-                    <Button Background="Transparent">
-                        <Button.Content>
-                            <StackPanel Orientation="Vertical" Height="177">
-                                <Image Source="{Binding cover}" />
-                                <Label VerticalAlignment="Bottom">10 rzeczy, których nie wiecie o facetach </Label>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-            </Border>
-            <Border Height="190" Width="210">
-                <StackPanel Orientation="Vertical">
-                    <Button Background="Transparent">
-                        <Button.Content>
-                            <StackPanel Orientation="Vertical" Height="177">
-                                <Image Source="{Binding cover}" />
-                                <Label VerticalAlignment="Bottom">10 rzeczy, których nie wiecie o facetach</Label>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-            </Border>
-            <Border Height="190" Width="210">
-                <StackPanel Orientation="Vertical">
-                    <Button Background="Transparent"> 
-                        <Button.Content>
-                            <StackPanel Orientation="Vertical" Height="177">
-                                <Image Source="{Binding cover}" />
-                                <Label >10 rzeczy, których nie wiecie o facetach</Label>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-            </Border>
         </StackPanel>
         <StackPanel Grid.Row="3">
             <Border Height="46" Width="210">
-                <Button  Style="{StaticResource ResourceKey=buttons}">
+                <Button  Style="{StaticResource ResourceKey=buttons}" Command="{Binding GoToPageCommand}" CommandParameter="Catalog">
                     Katalog
                 </Button>
             </Border>
             <Border Height="46" Width="210">
-                <Button  Style="{StaticResource ResourceKey=buttons}">
+                <Button  Style="{StaticResource ResourceKey=buttons}" Command="{Binding GoToPageCommand}" CommandParameter="Rentals">
                     Rezerwacje
                 </Button>
             </Border>
             <Border Height="46" Width="210">
-                <Button  Style="{StaticResource ResourceKey=buttons}">
+                <Button  Style="{StaticResource ResourceKey=buttons}" Command="{Binding GoToPageCommand}" CommandParameter="Contact">
                     Kontakt
+                </Button>
+            </Border>
+            <Border Height="46" Width="210">
+                <Button  Style="{StaticResource ResourceKey=buttons}" Command="{Binding SignOutCommand}">
+                    Wyloguj się
                 </Button>
             </Border>
         </StackPanel>

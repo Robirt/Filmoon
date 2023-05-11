@@ -44,6 +44,8 @@ public class SignInPageViewModel : ViewModelBase
     private async void SignInAsync(object? parameter)
     {
         SignInResponse = await UsersService.SignInAsync((parameter as SignInRequest)!);
+
+        SignInRequest = new SignInRequest();
     }
 
     private void GoToPage(object? parameter)
