@@ -1,6 +1,7 @@
 ﻿using Filmoon.Entities;
 using Filmoon.Services;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Filmoon.ViewModels.Pages;
@@ -23,6 +24,6 @@ public class HomePageViewModel : ViewModelBase
 
     public async Task GetMovies()
     {
-        Movies = await MoviesService.GetAsync();
+        Movies = (await MoviesService.GetAsync())!.Take(3).ToList();
     }
 }

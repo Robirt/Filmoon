@@ -85,6 +85,7 @@
     </Style>
 
     <Style TargetType="ListBox">
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
@@ -96,20 +97,21 @@
     </Style>
 
     <Style TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="25"/>
         <Setter Property="Width" Value="250"/>
         <Setter Property="Height" Value="250"/>
-        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderThickness" Value="3"/>
         <Setter Property="BorderBrush" Value="{StaticResource PrimaryAccentColor}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="20"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForegroundColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryAccentColor}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                    <Border CornerRadius="15" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
                 </ControlTemplate>
