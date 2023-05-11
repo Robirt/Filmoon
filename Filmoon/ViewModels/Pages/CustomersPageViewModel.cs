@@ -11,8 +11,6 @@ public class CustomersPageViewModel : ViewModelBase
     public CustomersPageViewModel(CustomersService customersService)
     {
         CustomersService = customersService;
-
-        Customers.Add(new CustomerEntity() { Email = "Sasasa", UserName = "Customerek " });
     }
 
     private CustomersService CustomersService { get; }
@@ -40,6 +38,6 @@ public class CustomersPageViewModel : ViewModelBase
 
     public async Task GetCustomers()
     {
-        //Customers = await CustomersService.GetAsync();
+        Customers = await CustomersService.GetAsync();
     }
 }
