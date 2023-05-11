@@ -11,31 +11,23 @@
     <Page.Resources>
         <ResourceDictionary Source="../../ResourceDictionaries/Pages/ContactPageDictionary.xaml"/>
     </Page.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="83*"/>
-            <ColumnDefinition Width="317*"/>
-            <ColumnDefinition Width="400*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Height="300" Width="400" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Height="300" Width="400">
             <StackPanel>
                 <Label Style="{StaticResource ResourceKey=Header}">Kontakt</Label>
             </StackPanel>
             <StackPanel>
-                <TextBox>
+                <TextBlock>
                     Masz jakieś pytania? 
                     Nie wahaj się. Zadzwoń lub wyślij maila. Jesteśmy dostępni dla Was  
                     Pn-Pt 10-18 oraz Soboty 10-15.
-                </TextBox>
+                </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Label>Numer telefonu: 777-234-111</Label>
                 <Label>Adres: Leszczyńska 44/46 44-100 Warszawa</Label>
                 <Label>Email: filmoon@gmail.com</Label>
             </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="2" Height="300" Width="400">
-            
         </StackPanel>
     </Grid>
 </Page>

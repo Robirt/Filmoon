@@ -23,9 +23,6 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Label Style="{StaticResource ResourceKey=Header}">
-                    <Label.Effect>
-                        <DropShadowEffect Color="#787976" Direction="90" ShadowDepth="5" Opacity="0.6"/>
-                    </Label.Effect>
                     FILMOON
                 </Label>
             </StackPanel>
@@ -35,6 +32,15 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="2" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <ListBox ItemsSource="{Binding Movies}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

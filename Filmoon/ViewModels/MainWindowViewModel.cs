@@ -1,6 +1,7 @@
 ﻿using Filmoon.Commands;
 using Filmoon.Commands.Users;
 using Filmoon.Models;
+using Filmoon.Responses;
 using Filmoon.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -50,7 +51,7 @@ public class MainWindowViewModel : ViewModelBase
 
     public ICommand SignOutCommand { get; set; }
 
-    public void VerifySignIn()
+    private void VerifySignIn()
     {
         if (string.IsNullOrEmpty(UsersService.JwtBearer.Name)) GoToPage("SignIn");
         else
@@ -66,20 +67,25 @@ public class MainWindowViewModel : ViewModelBase
         Content = RoutingService.GetPage(new RouteModel((paramater as string)!));
     }
 
-    private void UsersService_SignIn(object? sender, Responses.SignInResponse e)
+    private void SignOut()
+    {
+        UsersService.SignOutAsync();
+
+        Routes = new ObservableCollection<RouteModel>();
+    }
+
+    private void UsersService_SignIn(object? sender, SignInResponse e)
     {
         VerifySignIn();
     }
 
-    private void UsersService_SignOut(object? sender, Responses.ActionResponse e)
+    private void UsersService_SignOut(object? sender, ActionResponse e)
     {
         GoToPage("SignIn");
     }
 
-    private void SignOut()
+    private void RoutingService_PageRequested(object? sender, RouteModel route)
     {
-        UsersService.SignOutAsync();
+        GoToPage(route.Name);
     }
-
-    private void RoutingService_PageRequested(object? sender, RouteModel route) => GoToPage(route.Name);
 }
