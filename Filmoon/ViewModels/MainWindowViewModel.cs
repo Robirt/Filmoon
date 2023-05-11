@@ -1,4 +1,5 @@
 ﻿using Filmoon.Commands;
+using Filmoon.Commands.Users;
 using Filmoon.Models;
 using Filmoon.Services;
 using System.Collections.ObjectModel;
@@ -17,6 +18,8 @@ public class MainWindowViewModel : ViewModelBase
 
         GoToPageCommand = new GoToPageCommand(GoToPage);
 
+        SignOutCommand = new SignOutCommand(SignOut);
+
         UsersService.SignedIn += UsersService_SignIn;
         UsersService.SignedOut += UsersService_SignOut;
 
@@ -29,7 +32,7 @@ public class MainWindowViewModel : ViewModelBase
 
     private RoutingService RoutingService { get; }
 
-    private ObservableCollection<RouteModel> routes;
+    private ObservableCollection<RouteModel> routes = new ObservableCollection<RouteModel>();
     public ObservableCollection<RouteModel> Routes
     {
         get { return routes; }
@@ -45,6 +48,8 @@ public class MainWindowViewModel : ViewModelBase
 
     public ICommand GoToPageCommand { get; set; }
 
+    public ICommand SignOutCommand { get; set; }
+
     public void VerifySignIn()
     {
         if (string.IsNullOrEmpty(UsersService.JwtBearer.Name)) GoToPage("SignIn");
@@ -58,7 +63,7 @@ public class MainWindowViewModel : ViewModelBase
 
     private void GoToPage(string? paramater)
     {
-        Content = RoutingService.GetPage(new RouteModel(paramater as string));
+        Content = RoutingService.GetPage(new RouteModel((paramater as string)!));
     }
 
     private void UsersService_SignIn(object? sender, Responses.SignInResponse e)
@@ -69,6 +74,11 @@ public class MainWindowViewModel : ViewModelBase
     private void UsersService_SignOut(object? sender, Responses.ActionResponse e)
     {
         GoToPage("SignIn");
+    }
+
+    private void SignOut()
+    {
+        UsersService.SignOutAsync();
     }
 
     private void RoutingService_PageRequested(object? sender, RouteModel route) => GoToPage(route.Name);

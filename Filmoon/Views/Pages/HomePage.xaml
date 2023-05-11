@@ -36,27 +36,5 @@
         </StackPanel>
         <StackPanel Grid.Row="2" >
         </StackPanel>
-        <StackPanel Grid.Row="3">
-            <Border Height="46" Width="210">
-                <Button  Style="{StaticResource ResourceKey=buttons}" Command="{Binding GoToPageCommand}" CommandParameter="Catalog">
-                    Katalog
-                </Button>
-            </Border>
-            <Border Height="46" Width="210">
-                <Button  Style="{StaticResource ResourceKey=buttons}" Command="{Binding GoToPageCommand}" CommandParameter="Rentals">
-                    Rezerwacje
-                </Button>
-            </Border>
-            <Border Height="46" Width="210">
-                <Button  Style="{StaticResource ResourceKey=buttons}" Command="{Binding GoToPageCommand}" CommandParameter="Contact">
-                    Kontakt
-                </Button>
-            </Border>
-            <Border Height="46" Width="210">
-                <Button  Style="{StaticResource ResourceKey=buttons}" Command="{Binding SignOutCommand}">
-                    Wyloguj się
-                </Button>
-            </Border>
-        </StackPanel>
     </Grid>
 </Page>
